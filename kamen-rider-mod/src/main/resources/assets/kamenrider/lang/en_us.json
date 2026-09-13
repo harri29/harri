@@ -5,6 +5,8 @@
   "item.kamenrider.double_driver": "Double Driver",
   "item.kamenrider.desire_driver": "Desire Driver",
   "item.kamenrider.kuuga_form_changer": "Kuuga Form Changer",
+  "item.kamenrider.kuuga_dragon_rod": "Kuuga Dragon Rod",
+  "item.kamenrider.kuuga_titan_sword": "Kuuga Titan Sword",
   "item.kamenrider.double_form_changer": "Gaia Memory Case",
   "item.kamenrider.geats_form_changer": "Raise Buckle Case",
 
@@ -25,5 +27,8 @@
   "message.kamenrider.form_required": "Transform into the matching Rider before changing forms.",
   "message.kamenrider.dehenshin": "Transformation released.",
   "message.kamenrider.rider_kick": "%s - RIDER KICK! Hits: %s",
-  "message.kamenrider.finisher_cooldown": "Finisher is recharging..."
+  "message.kamenrider.finisher_cooldown": "Finisher is recharging...",
+  "message.kamenrider.weapon_wrong_form": "This weapon requires %s.",
+  "message.kamenrider.weapon_cooldown": "Weapon technique is recharging...",
+  "message.kamenrider.weapon_attack": "%s technique! Hits: %s"
 }
