@@ -1,5 +1,6 @@
 package io.github.harri29.kamenrider;
 
+import io.github.harri29.kamenrider.network.RiderNetworking;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -106,6 +107,7 @@ public final class DecadeCardItem extends Item {
                 64, 0.8D, 1.1D, 0.8D, 0.12D);
         level.playSound(null, player.blockPosition(), SoundEvents.GENERIC_EXPLODE.value(), SoundSource.PLAYERS, 0.9F, 1.10F);
         player.getCooldowns().addCooldown(this, 140);
+        RiderNetworking.presentation(player, "final_attack_ride");
         return hits;
     }
 
