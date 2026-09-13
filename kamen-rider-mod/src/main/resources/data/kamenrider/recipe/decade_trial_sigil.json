@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "item": "minecraft:amethyst_shard" },
+    { "item": "minecraft:paper" },
+    { "item": "minecraft:iron_ingot" }
+  ],
+  "result": { "id": "kamenrider:decade_trial_sigil", "count": 1 }
+}
