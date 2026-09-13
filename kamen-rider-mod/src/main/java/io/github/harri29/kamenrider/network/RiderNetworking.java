@@ -18,7 +18,7 @@ public final class RiderNetworking {
     }
 
     public static void registerPayloadHandlers(RegisterPayloadHandlersEvent event) {
-        PayloadRegistrar registrar = event.registrar("1");
+        PayloadRegistrar registrar = event.registrar("2");
 
         if (FMLEnvironment.dist == Dist.CLIENT) {
             registrar.playToClient(
@@ -36,6 +36,7 @@ public final class RiderNetworking {
         }
     }
 
+    /** Real gameplay change: clients should play the Henshin/form-change presentation. */
     public static void sync(Player player, RiderForm form) {
         if (!(player instanceof ServerPlayer serverPlayer)) {
             return;
@@ -43,10 +44,11 @@ public final class RiderNetworking {
         String formId = form == null ? "" : form.id();
         PacketDistributor.sendToPlayersTrackingEntityAndSelf(
                 serverPlayer,
-                new RiderStatePayload(serverPlayer.getId(), formId)
+                new RiderStatePayload(serverPlayer.getId(), formId, true)
         );
     }
 
+    /** Snapshot for a newly tracking client: show the current suit immediately, with no fake Henshin replay. */
     public static void onStartTracking(PlayerEvent.StartTracking event) {
         if (!(event.getEntity() instanceof ServerPlayer watcher)) {
             return;
@@ -58,6 +60,6 @@ public final class RiderNetworking {
         String formId = RiderTransformation.currentForm(target)
                 .map(RiderForm::id)
                 .orElse("");
-        PacketDistributor.sendToPlayer(watcher, new RiderStatePayload(target.getId(), formId));
+        PacketDistributor.sendToPlayer(watcher, new RiderStatePayload(target.getId(), formId, false));
     }
 }
