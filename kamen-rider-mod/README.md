@@ -2,59 +2,51 @@
 
 Fan-made Minecraft Java mod focused on **henshin -> Rider-specific equipment -> modular form play -> finisher** gameplay.
 
-## v0.7 highlights
+## v0.8 highlights
 
-### Geats is now the fourth dedicated full-suit Rider
-Geats no longer uses the generic fallback shell. The new suit has original Minecraft-style geometry attached to the vanilla player skeleton:
+### Rider-specific finisher layer
+v0.8 adds a reusable `RiderFinisher` service instead of making every finisher reimplement targeting, damage, movement and FX. Normal techniques remain available; Shift activates the stronger form/equipment finisher where supported.
 
-- white fox helmet shell
-- tall fox ears
-- full-bright red eye visor
-- white base chest shell
-- independent upper Raise Buckle armor module
-- independent lower Raise Buckle armor module
-- Desire Driver frame and glowing core
-- wide and slim player skin support
-- staged Henshin: fox shell -> upper module -> lower module -> Driver/visor finish
+### Kuuga weapon finishers
+Kuuga keeps the existing Dragon Rod and Titan Sword techniques, but both now have a second finisher input:
 
-Editable source: `assets-src/blockbench/geats_suit.bbmodel`.
+- Dragon Rod: right-click = normal technique; Shift + right-click = long-reach high-damage finisher with electric/end-rod FX and a forward burst.
+- Titan Sword: right-click = normal heavy technique; Shift + right-click = high-damage heavy finisher with large knockback, crit and impact-smoke FX.
 
-### Two-slot Raise Buckle loadouts
-The old Raise Buckle Case is replaced in the creative tab by four real Buckle items:
+The required Kuuga form is still enforced before either technique can activate.
 
-- Magnum Raise Buckle — upper slot
-- Ninja Raise Buckle — upper slot
-- Boost Raise Buckle — lower slot
-- Zombie Raise Buckle — lower slot
+### W Maximum Drive
+All six Gaia Memories can now trigger a Maximum Drive when that Memory is actually inserted in the current W form:
 
-This produces four clean modular loadouts:
+- Cyclone: radial wind burst and knockback.
+- Heat: high-damage flame cone.
+- Luna: long-range energy trace.
+- Joker: forward burst finisher with heavy impact.
+- Metal: short-range heavy smash.
+- Trigger: focused long-range Maximum Drive shot.
 
-- MagnumBoost
-- MagnumZombie
-- NinjaBoost
-- NinjaZombie
+Right-click a Gaia Memory normally to change that side of W. **Shift + right-click an already equipped Memory** activates its Maximum Drive. An unequipped Memory cannot trigger a finisher just because it is held in the hand.
 
-Using a Buckle replaces only its slot. Example: MagnumBoost + Ninja Buckle -> NinjaBoost; NinjaBoost + Zombie Buckle -> NinjaZombie.
+### Geats Raise Buckle finishers
+The two-slot Raise Buckle system now drives four distinct finishers:
 
-Legacy standalone Ninja/Zombie forms and `geats_form_changer` remain registered for older-world save compatibility but are hidden from the main creative flow.
+- Magnum Raise Buckle: focused long-range Magnum Strike.
+- Ninja Raise Buckle: high-speed rush and sweep.
+- Boost Raise Buckle: Boost Grand Strike mobility burst with the highest forward-impact damage.
+- Zombie Raise Buckle: radial heavy smash with large knockback.
 
-### Geats weapons
-- **Magnum Shooter**: requires Magnum in the upper slot; focused long-range shot trace with electric FX.
-- **Ninja Dualer**: requires Ninja in the upper slot; fast forward rush + sweep attack.
-- **Zombie Breaker**: requires Zombie in the lower slot; slower heavy cone smash with high damage and knockback.
+Right-click a Buckle normally to replace its upper/lower slot. **Shift + right-click an equipped Buckle** activates its finisher. A Buckle that is not currently equipped cannot activate the finisher.
 
-Boost is intentionally mobility/finisher-oriented instead of adding another weapon item.
-
-### 3D Buckles and equipment
-All four Raise Buckles inherit from one reusable 3D base model and swap their own material colors. Magnum Shooter, Ninja Dualer and Zombie Breaker each use a dedicated multi-part 3D item model.
+### Existing Decade finisher flow retained
+Decade already has its Rider Card finisher architecture, including Final Attack Ride: Decade, so v0.8 keeps that path intact rather than duplicating another activation system.
 
 ## Riders currently implemented
 
 ### Kuuga
 - Mighty / Dragon / Pegasus / Titan
 - dedicated staged suit
-- Dragon Rod
-- Titan Sword
+- Dragon Rod + normal technique + Shift finisher
+- Titan Sword + normal technique + Shift finisher
 
 ### Decade
 - dedicated staged suit
@@ -68,6 +60,7 @@ All four Raise Buckles inherit from one reusable 3D base model and swap their ow
 - dedicated vertical split suit
 - Metal Shaft
 - Trigger Magnum
+- six Gaia Memory Maximum Drives
 
 ### Geats
 - MagnumBoost / MagnumZombie / NinjaBoost / NinjaZombie
@@ -75,6 +68,7 @@ All four Raise Buckles inherit from one reusable 3D base model and swap their ow
 - Magnum Shooter
 - Ninja Dualer
 - Zombie Breaker
+- four equipped-Buckle finishers
 
 ## Controls
 
@@ -82,25 +76,29 @@ All four Raise Buckles inherit from one reusable 3D base model and swap their ow
 2. Right-click a Driver: **Henshin**.
 3. Shift + right-click the Driver while transformed: **Rider Kick**.
 4. Right-click the same Driver again: de-henshin.
-5. Kuuga: use its form changer and matching weapons.
-6. Decade: use Ride Booker and Rider Cards.
-7. W: right-click a Gaia Memory to replace only that side's Memory.
-8. Geats: right-click a Raise Buckle to replace only its upper/lower slot.
-9. Geats: use Magnum Shooter with Magnum, Ninja Dualer with Ninja, or Zombie Breaker with Zombie.
+5. Kuuga: right-click its matching weapon for the normal technique; Shift + right-click the weapon for the finisher.
+6. Decade: use Ride Booker and Rider Cards; Final Attack Ride remains its dedicated finisher path.
+7. W: right-click a Gaia Memory to replace only that side's Memory; Shift + right-click an already inserted Memory for Maximum Drive.
+8. Geats: right-click a Raise Buckle to replace only its upper/lower slot; Shift + right-click an equipped Buckle for its finisher.
+9. Geats weapons remain Buckle-gated: Magnum Shooter needs Magnum, Ninja Dualer needs Ninja, Zombie Breaker needs Zombie.
 
 ## Architecture
 
 - `RiderForm`: gameplay and visual metadata.
 - `RiderTransformation`: shared transformation/effect service.
+- `RiderFinisher`: shared finisher targeting, damage, movement, particles, sound and cooldown behavior.
 - `RiderStatePayload` + `RiderNetworking`: multiplayer Rider-state synchronization.
 - `RiderClientState`: client presentation cache and Henshin timing.
 - `RiderSuitLayer`: shared undersuit/fallback layer.
 - `KuugaSuitModel` + `KuugaSuitLayer`: Kuuga armor.
+- `KuugaWeaponItem`: form-locked normal techniques + Shift finishers.
 - `DecadeSuitModel` + `DecadeSuitLayer`: Decade armor.
+- `DecadeWeaponItem` + `DecadeCardItem`: Ride Booker and Rider Card actions.
 - `DoubleSuitModel` + `DoubleSuitLayer`: W split armor.
-- `DoubleMemoryItem`: independent Gaia Memory side replacement.
+- `DoubleMemoryItem`: independent Gaia Memory side replacement + Maximum Drive activation.
+- `DoubleWeaponItem`: Memory-aware Metal Shaft / Trigger Magnum abilities.
 - `GeatsSuitModel` + `GeatsSuitLayer`: modular Geats fox armor.
-- `GeatsBuckleItem`: upper/lower Raise Buckle slot replacement.
+- `GeatsBuckleItem`: upper/lower Raise Buckle replacement + equipped-Buckle finisher activation.
 - `GeatsWeaponItem`: Buckle-aware weapon abilities.
 - `KamenRiderClient`: wide/slim model-layer registration.
 
@@ -123,15 +121,15 @@ Jar output is written to `build/libs/`.
 
 ## Next milestones
 
-- in-game visual QA for fox helmet/ears and Raise Buckle proportions
+- in-game visual and balance QA for the new finisher damage/ranges
+- first-person Driver / Gaia Memory / Raise Buckle activation animation
 - original texture sheets for all four dedicated Riders
-- belt-on-waist and Driver/Buckle insertion animation
-- Geats finisher presentation and Boost-specific movement burst
-- W Maximum Drive framework
-- additional Decade Kamen Ride / Form Ride cards
-- Pegasus Bowgun and additional Kuuga techniques
-- enemy mobs, bosses and unlock/progression loop
-- configurable keybinds
+- custom distributable sound set for Henshin and finishers
+- more Decade Kamen Ride / Form Ride cards
+- Pegasus Bowgun and additional Kuuga equipment
+- enemy mobs and bosses designed around the stronger finisher layer
+- unlock/progression loop instead of creative-only equipment access
+- configurable keybinds and accessibility options
 
 ## Assets and source references
 
