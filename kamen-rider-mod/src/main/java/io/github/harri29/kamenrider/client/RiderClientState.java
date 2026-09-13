@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public final class RiderClientState {
     private static final Map<Integer, Entry> STATES = new ConcurrentHashMap<>();
     private static final Map<Integer, PresentationEntry> PRESENTATIONS = new ConcurrentHashMap<>();
-    private static final double HENSHIN_DURATION_SECONDS = 1.20D;
+    private static final double HENSHIN_DURATION_SECONDS = 1.65D;
     private static final double PRESENTATION_DURATION_SECONDS = 0.72D;
 
     private RiderClientState() {
