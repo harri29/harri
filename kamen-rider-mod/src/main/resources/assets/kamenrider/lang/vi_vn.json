@@ -36,6 +36,11 @@
   "memory.kamenrider.metal": "Metal Memory",
   "memory.kamenrider.trigger": "Trigger Memory",
 
+  "buckle.kamenrider.magnum": "Magnum Raise Buckle",
+  "buckle.kamenrider.boost": "Boost Raise Buckle",
+  "buckle.kamenrider.ninja": "Ninja Raise Buckle",
+  "buckle.kamenrider.zombie": "Zombie Raise Buckle",
+
   "rider.kamenrider.kuuga_mighty": "Kamen Rider Kuuga - Mighty Form",
   "rider.kamenrider.kuuga_dragon": "Kamen Rider Kuuga - Dragon Form",
   "rider.kamenrider.kuuga_pegasus": "Kamen Rider Kuuga - Pegasus Form",
@@ -66,14 +71,19 @@
   "message.kamenrider.weapon_wrong_form": "Vũ khí này yêu cầu %s.",
   "message.kamenrider.weapon_cooldown": "Kỹ năng vũ khí đang hồi chiêu...",
   "message.kamenrider.weapon_attack": "%s - kích hoạt kỹ năng! Trúng: %s mục tiêu",
+  "message.kamenrider.kuuga_weapon_finisher": "%s - FINISHER! Trúng: %s mục tiêu",
   "message.kamenrider.card_requires_decade": "Chỉ Kamen Rider Decade mới sử dụng được Rider Card này.",
   "message.kamenrider.card_cooldown": "Rider Card đang hồi chiêu...",
   "message.kamenrider.card_activate": "%s! Trúng: %s mục tiêu",
   "message.kamenrider.memory_requires_double": "Hãy biến thân thành Kamen Rider W trước khi cắm Gaia Memory.",
   "message.kamenrider.memory_insert": "Đã cắm %s -> %s",
+  "message.kamenrider.maximum_drive": "%s MAXIMUM DRIVE! %s - Trúng: %s mục tiêu",
+  "message.kamenrider.maximum_drive_memory_inactive": "Gaia Memory này hiện chưa được cắm trong Double Driver.",
   "message.kamenrider.double_weapon_requires_w": "Chỉ Kamen Rider W mới dùng được toàn bộ sức mạnh của vũ khí này.",
   "message.kamenrider.double_weapon_wrong_memory": "Vũ khí này yêu cầu %s ở nửa phải của W.",
   "message.kamenrider.buckle_requires_geats": "Hãy biến thân thành Kamen Rider Geats trước khi lắp Raise Buckle.",
   "message.kamenrider.buckle_set": "Đã lắp %s -> %s",
+  "message.kamenrider.buckle_finisher": "%s - FINISHER! %s - Trúng: %s mục tiêu",
+  "message.kamenrider.buckle_finisher_inactive": "Raise Buckle này hiện chưa được lắp trên Desire Driver.",
   "message.kamenrider.geats_weapon_wrong_buckle": "Bạn chưa lắp Raise Buckle cần thiết cho vũ khí này."
 }
