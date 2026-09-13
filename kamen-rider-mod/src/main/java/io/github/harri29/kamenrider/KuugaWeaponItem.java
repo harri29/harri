@@ -1,5 +1,6 @@
 package io.github.harri29.kamenrider;
 
+import io.github.harri29.kamenrider.network.RiderNetworking;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -136,6 +137,7 @@ public final class KuugaWeaponItem extends Item {
         }
 
         player.getCooldowns().addCooldown(this, FINISHER_COOLDOWN);
+        RiderNetworking.presentation(player, "kuuga_weapon_finisher");
         player.displayClientMessage(
                 Component.translatable("message.kamenrider.kuuga_weapon_finisher", stack.getHoverName(), hits),
                 true
