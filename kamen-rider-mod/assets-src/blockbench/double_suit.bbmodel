@@ -1,0 +1,28 @@
+{
+  "meta":{"format_version":"5.0","model_format":"free","box_uv":true},
+  "name":"Kamen Rider Craft - W Split Suit",
+  "model_identifier":"kamenrider:double_suit",
+  "visible_box":[2,3,0],
+  "resolution":{"width":64,"height":64},
+  "elements":[
+    {"name":"helmet_left","box_uv":true,"from":[-4.35,24.0,-4.35],"to":[0.0,32.60,4.35],"origin":[0,28,0],"uv_offset":[0,0],"color":3,"type":"cube","uuid":"30000000-0000-4000-8000-000000000001","faces":{"north":{"uv":[0,0,4,9],"texture":null},"east":{"uv":[0,0,9,9],"texture":null},"south":{"uv":[0,0,4,9],"texture":null},"west":{"uv":[0,0,9,9],"texture":null},"up":{"uv":[0,0,4,9],"texture":null},"down":{"uv":[0,0,4,9],"texture":null}}},
+    {"name":"helmet_right","box_uv":true,"from":[0.0,24.0,-4.35],"to":[4.35,32.60,4.35],"origin":[0,28,0],"uv_offset":[18,0],"color":4,"type":"cube","uuid":"30000000-0000-4000-8000-000000000002","faces":{"north":{"uv":[18,0,22,9],"texture":null},"east":{"uv":[18,0,27,9],"texture":null},"south":{"uv":[18,0,22,9],"texture":null},"west":{"uv":[18,0,27,9],"texture":null},"up":{"uv":[18,0,22,9],"texture":null},"down":{"uv":[18,0,22,9],"texture":null}}},
+    {"name":"eye_left","box_uv":true,"from":[-3.55,27.1,-4.76],"to":[-0.10,29.2,-4.18],"origin":[0,28,0],"uv_offset":[0,18],"color":1,"type":"cube","uuid":"30000000-0000-4000-8000-000000000003","faces":{"north":{"uv":[0,18,4,20],"texture":null},"east":{"uv":[0,18,1,20],"texture":null},"south":{"uv":[0,18,4,20],"texture":null},"west":{"uv":[0,18,1,20],"texture":null},"up":{"uv":[0,18,4,19],"texture":null},"down":{"uv":[0,18,4,19],"texture":null}}},
+    {"name":"eye_right","box_uv":true,"from":[0.10,27.1,-4.76],"to":[3.55,29.2,-4.18],"origin":[0,28,0],"uv_offset":[8,18],"color":1,"type":"cube","uuid":"30000000-0000-4000-8000-000000000004","faces":{"north":{"uv":[8,18,12,20],"texture":null},"east":{"uv":[8,18,9,20],"texture":null},"south":{"uv":[8,18,12,20],"texture":null},"west":{"uv":[8,18,9,20],"texture":null},"up":{"uv":[8,18,12,19],"texture":null},"down":{"uv":[8,18,12,19],"texture":null}}},
+    {"name":"chest_left","box_uv":true,"from":[-4.48,17.2,-2.36],"to":[0.0,24.3,2.36],"origin":[0,21,0],"uv_offset":[20,20],"color":3,"type":"cube","uuid":"30000000-0000-4000-8000-000000000005","faces":{"north":{"uv":[20,20,24,27],"texture":null},"east":{"uv":[20,20,25,27],"texture":null},"south":{"uv":[20,20,24,27],"texture":null},"west":{"uv":[20,20,25,27],"texture":null},"up":{"uv":[20,20,24,25],"texture":null},"down":{"uv":[20,20,24,25],"texture":null}}},
+    {"name":"chest_right","box_uv":true,"from":[0.0,17.2,-2.36],"to":[4.48,24.3,2.36],"origin":[0,21,0],"uv_offset":[38,20],"color":4,"type":"cube","uuid":"30000000-0000-4000-8000-000000000006","faces":{"north":{"uv":[38,20,42,27],"texture":null},"east":{"uv":[38,20,43,27],"texture":null},"south":{"uv":[38,20,42,27],"texture":null},"west":{"uv":[38,20,43,27],"texture":null},"up":{"uv":[38,20,42,25],"texture":null},"down":{"uv":[38,20,42,25],"texture":null}}},
+    {"name":"center_seam","box_uv":true,"from":[-0.24,17.1,-2.72],"to":[0.24,24.3,-2.30],"origin":[0,21,0],"uv_offset":[0,22],"color":2,"type":"cube","uuid":"30000000-0000-4000-8000-000000000007","faces":{"north":{"uv":[0,22,1,29],"texture":null},"east":{"uv":[0,22,1,29],"texture":null},"south":{"uv":[0,22,1,29],"texture":null},"west":{"uv":[0,22,1,29],"texture":null},"up":{"uv":[0,22,1,23],"texture":null},"down":{"uv":[0,22,1,23],"texture":null}}},
+    {"name":"double_driver","box_uv":true,"from":[-4.65,11.0,-2.46],"to":[4.65,13.2,2.46],"origin":[0,12,0],"uv_offset":[20,34],"color":2,"type":"cube","uuid":"30000000-0000-4000-8000-000000000008","faces":{"north":{"uv":[20,34,29,36],"texture":null},"east":{"uv":[20,34,25,36],"texture":null},"south":{"uv":[20,34,29,36],"texture":null},"west":{"uv":[20,34,25,36],"texture":null},"up":{"uv":[20,34,29,39],"texture":null},"down":{"uv":[20,34,29,39],"texture":null}}}
+  ],
+  "groups":[
+    {"name":"Left Half","uuid":"40000000-0000-4000-8000-000000000001","origin":[0,21,0],"rotation":[0,0,0],"color":3,"children":[],"visibility":true,"export":true},
+    {"name":"Right Half","uuid":"40000000-0000-4000-8000-000000000002","origin":[0,21,0],"rotation":[0,0,0],"color":4,"children":[],"visibility":true,"export":true},
+    {"name":"Driver and Seam","uuid":"40000000-0000-4000-8000-000000000003","origin":[0,18,0],"rotation":[0,0,0],"color":2,"children":[],"visibility":true,"export":true}
+  ],
+  "outliner":[
+    {"uuid":"40000000-0000-4000-8000-000000000001","isOpen":true,"children":["30000000-0000-4000-8000-000000000001","30000000-0000-4000-8000-000000000003","30000000-0000-4000-8000-000000000005"]},
+    {"uuid":"40000000-0000-4000-8000-000000000002","isOpen":true,"children":["30000000-0000-4000-8000-000000000002","30000000-0000-4000-8000-000000000004","30000000-0000-4000-8000-000000000006"]},
+    {"uuid":"40000000-0000-4000-8000-000000000003","isOpen":true,"children":["30000000-0000-4000-8000-000000000007","30000000-0000-4000-8000-000000000008"]}
+  ],
+  "textures":[]
+}
