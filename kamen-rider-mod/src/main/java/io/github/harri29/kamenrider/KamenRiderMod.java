@@ -29,6 +29,15 @@ public final class KamenRiderMod {
     public static final DeferredItem<DriverItem> DOUBLE_DRIVER = ITEMS.register("double_driver", () -> new DriverItem(RiderForm.DOUBLE_CYCLONE_JOKER, driverProperties()));
     public static final DeferredItem<DriverItem> DESIRE_DRIVER = ITEMS.register("desire_driver", () -> new DriverItem(RiderForm.GEATS_MAGNUM_BOOST, driverProperties()));
 
+    public static final DeferredItem<RiderTrialItem> KUUGA_TRIAL_SIGIL = ITEMS.register("kuuga_trial_sigil",
+            () -> new RiderTrialItem(RiderTrialItem.Trial.KUUGA, trialProperties()));
+    public static final DeferredItem<RiderTrialItem> DECADE_TRIAL_SIGIL = ITEMS.register("decade_trial_sigil",
+            () -> new RiderTrialItem(RiderTrialItem.Trial.DECADE, trialProperties()));
+    public static final DeferredItem<RiderTrialItem> DOUBLE_TRIAL_SIGIL = ITEMS.register("double_trial_sigil",
+            () -> new RiderTrialItem(RiderTrialItem.Trial.DOUBLE, trialProperties()));
+    public static final DeferredItem<RiderTrialItem> GEATS_TRIAL_SIGIL = ITEMS.register("geats_trial_sigil",
+            () -> new RiderTrialItem(RiderTrialItem.Trial.GEATS, trialProperties()));
+
     public static final DeferredItem<FormChangeItem> KUUGA_FORM_CHANGER = ITEMS.register("kuuga_form_changer",
             () -> new FormChangeItem("kuuga", List.of(RiderForm.KUUGA_MIGHTY, RiderForm.KUUGA_DRAGON, RiderForm.KUUGA_PEGASUS, RiderForm.KUUGA_TITAN), formItemProperties()));
     public static final DeferredItem<KuugaWeaponItem> KUUGA_DRAGON_ROD = ITEMS.register("kuuga_dragon_rod",
@@ -59,7 +68,6 @@ public final class KamenRiderMod {
     public static final DeferredItem<DoubleWeaponItem> TRIGGER_MAGNUM = ITEMS.register("trigger_magnum",
             () -> new DoubleWeaponItem(DoubleWeaponItem.Style.TRIGGER_MAGNUM, new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
 
-    // Legacy W form-changer remains registered so older saves continue loading.
     public static final DeferredItem<FormChangeItem> DOUBLE_FORM_CHANGER = ITEMS.register("double_form_changer",
             () -> new FormChangeItem("double", List.of(RiderForm.DOUBLE_CYCLONE_JOKER, RiderForm.DOUBLE_HEAT_METAL, RiderForm.DOUBLE_LUNA_TRIGGER), formItemProperties()));
 
@@ -81,7 +89,6 @@ public final class KamenRiderMod {
             () -> new GeatsWeaponItem(GeatsWeaponItem.Style.ZOMBIE_BREAKER,
                     new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).attributes(SwordItem.createAttributes(Tiers.DIAMOND, 7.5F, -2.9F))));
 
-    // Legacy Geats form-changer remains registered for save compatibility, but is hidden from the creative tab.
     public static final DeferredItem<FormChangeItem> GEATS_FORM_CHANGER = ITEMS.register("geats_form_changer",
             () -> new FormChangeItem("geats", List.of(RiderForm.GEATS_MAGNUM_BOOST, RiderForm.GEATS_NINJA, RiderForm.GEATS_ZOMBIE), formItemProperties()));
 
@@ -90,6 +97,11 @@ public final class KamenRiderMod {
                     .title(Component.translatable("itemGroup.kamenrider"))
                     .icon(() -> KUUGA_ARCLE.get().getDefaultInstance())
                     .displayItems((parameters, output) -> {
+                        output.accept(KUUGA_TRIAL_SIGIL.get());
+                        output.accept(DECADE_TRIAL_SIGIL.get());
+                        output.accept(DOUBLE_TRIAL_SIGIL.get());
+                        output.accept(GEATS_TRIAL_SIGIL.get());
+
                         output.accept(KUUGA_ARCLE.get());
                         output.accept(KUUGA_FORM_CHANGER.get());
                         output.accept(KUUGA_DRAGON_ROD.get());
@@ -127,6 +139,7 @@ public final class KamenRiderMod {
         TABS.register(modBus);
         modBus.addListener(RiderNetworking::registerPayloadHandlers);
         NeoForge.EVENT_BUS.addListener(RiderNetworking::onStartTracking);
+        NeoForge.EVENT_BUS.addListener(RiderTrialSystem::onLivingDeath);
     }
 
     private static Item.Properties driverProperties() { return new Item.Properties().stacksTo(1).rarity(Rarity.EPIC); }
@@ -134,4 +147,5 @@ public final class KamenRiderMod {
     private static Item.Properties cardProperties() { return new Item.Properties().stacksTo(1).rarity(Rarity.EPIC); }
     private static Item.Properties memoryProperties() { return new Item.Properties().stacksTo(1).rarity(Rarity.RARE); }
     private static Item.Properties buckleProperties() { return new Item.Properties().stacksTo(1).rarity(Rarity.RARE); }
+    private static Item.Properties trialProperties() { return new Item.Properties().stacksTo(1).rarity(Rarity.EPIC); }
 }
