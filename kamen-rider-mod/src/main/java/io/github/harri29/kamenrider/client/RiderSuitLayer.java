@@ -11,8 +11,8 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 
 /**
  * Shared undersuit/fallback renderer.
- * Kuuga uses this as a dark undersuit beneath its dedicated armor geometry;
- * other Riders continue using the colored shell until their own models land.
+ * Riders with dedicated armor geometry use a dark undersuit; other Riders keep
+ * the colored shell until their own model is implemented.
  */
 public final class RiderSuitLayer extends RenderLayer<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> {
     private final PlayerModel<AbstractClientPlayer> suitModel;
@@ -48,10 +48,11 @@ public final class RiderSuitLayer extends RenderLayer<AbstractClientPlayer, Play
         suitModel.prepareMobModel(player, limbSwing, limbSwingAmount, partialTick);
         suitModel.setupAnim(player, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 
+        boolean dedicatedModel = form.seriesId().equals("kuuga") || form.seriesId().equals("decade");
         float progress = RiderClientState.henshinProgress(player.getId());
-        float pulseAmount = form.seriesId().equals("kuuga") ? 0.035F : 0.09F;
+        float pulseAmount = dedicatedModel ? 0.035F : 0.09F;
         float pulse = 1.0F + (1.0F - progress) * pulseAmount;
-        int suitRgb = form.seriesId().equals("kuuga") ? 0x17191D : form.suitColor();
+        int suitRgb = dedicatedModel ? 0x17191D : form.suitColor();
         int argb = 0xFF000000 | suitRgb;
 
         poseStack.pushPose();
