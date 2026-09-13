@@ -67,12 +67,12 @@ public final class GeatsSuitLayer extends RenderLayer<AbstractClientPlayer, Play
     private static int upperColor(RiderForm form) {
         return GeatsBuckleItem.hasUpper(form, GeatsBuckleItem.Buckle.NINJA)
                 ? 0xFF00A98F
-                : 0xFFE6E6E6;
+                : 0xFFE53935;
     }
 
     private static int lowerColor(RiderForm form) {
         return GeatsBuckleItem.hasLower(form, GeatsBuckleItem.Buckle.ZOMBIE)
                 ? 0xFF6C3C9A
-                : 0xFFEA4238;
+                : 0xFFF05A34;
     }
 }
