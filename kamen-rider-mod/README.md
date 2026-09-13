@@ -27,6 +27,12 @@ The armor follows normal Minecraft player animation because every piece is paren
 
 Armor color changes with the active form while metallic details stay gold and the eye/belt-core pass renders full-bright.
 
+### Kuuga form weapons
+- **Dragon Rod**: usable at full power only in Dragon Form. Right-click performs a wide sweeping strike with a short forward burst, electric particles and lighter knockback.
+- **Titan Sword**: usable at full power only in Titan Form. Right-click performs a narrower heavy strike with higher damage and knockback.
+
+Both weapons have normal melee attributes, individual cooldowns, dedicated 3D item models, English/Vietnamese localization and form-lock feedback. Their current runtime materials use vanilla Minecraft textures so the repository remains distributable.
+
 ### Staged Henshin animation
 The client presentation timeline is now 1.20 seconds instead of a single scale pulse. Kuuga armor assembles in stages:
 
@@ -60,6 +66,7 @@ All four Drivers use multi-part 3D item geometry instead of flat placeholder ico
 3. Use the matching Form Changer item to cycle forms.
 4. Shift + right-click the Driver while transformed: **Rider Kick**.
 5. Right-click the same Driver again: de-henshin.
+6. While in Dragon or Titan Form, right-click the matching Kuuga weapon to activate its special technique.
 
 ## Architecture
 
@@ -69,6 +76,7 @@ All four Drivers use multi-part 3D item geometry instead of flat placeholder ico
 - `RiderClientState`: client presentation cache and Henshin timing.
 - `RiderSuitLayer`: shared undersuit/fallback shell.
 - `KuugaSuitModel` + `KuugaSuitLayer`: dedicated Kuuga armor, staged assembly and render passes.
+- `KuugaWeaponItem`: form-locked Kuuga weapon abilities.
 - `KamenRiderClient`: model-layer registration for wide/slim player skins.
 
 ## Development
@@ -93,7 +101,7 @@ Jar output is written to `build/libs/`.
 - In-game visual QA and refinement of Kuuga proportions
 - Original texture sheet authored from the Blockbench source
 - Driver activation animation and belt-on-waist rendering
-- Kuuga-specific weapon/item gameplay
+- Pegasus Bowgun and additional Kuuga-specific techniques
 - Dedicated Decade, W and Geats suit geometry using the Kuuga pipeline
 - Original/remade distributable sound effects
 - Enemy mobs, bosses and unlock/progression loop
