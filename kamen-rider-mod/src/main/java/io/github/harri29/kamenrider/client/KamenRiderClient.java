@@ -18,6 +18,8 @@ import net.neoforged.neoforge.common.NeoForge;
 public final class KamenRiderClient {
     public static final ModelLayerLocation RIDER_SUIT_WIDE = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(KamenRiderMod.MODID, "rider_suit"), "wide");
     public static final ModelLayerLocation RIDER_SUIT_SLIM = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(KamenRiderMod.MODID, "rider_suit"), "slim");
+    public static final ModelLayerLocation RIDER_WAIST_WIDE = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(KamenRiderMod.MODID, "rider_waist"), "wide");
+    public static final ModelLayerLocation RIDER_WAIST_SLIM = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(KamenRiderMod.MODID, "rider_waist"), "slim");
     public static final ModelLayerLocation KUUGA_SUIT_WIDE = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(KamenRiderMod.MODID, "kuuga_suit"), "wide");
     public static final ModelLayerLocation KUUGA_SUIT_SLIM = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(KamenRiderMod.MODID, "kuuga_suit"), "slim");
     public static final ModelLayerLocation DECADE_SUIT_WIDE = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(KamenRiderMod.MODID, "decade_suit"), "wide");
@@ -38,6 +40,8 @@ public final class KamenRiderClient {
     private static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(RIDER_SUIT_WIDE, () -> LayerDefinition.create(PlayerModel.createMesh(new CubeDeformation(0.08F), false), 64, 64));
         event.registerLayerDefinition(RIDER_SUIT_SLIM, () -> LayerDefinition.create(PlayerModel.createMesh(new CubeDeformation(0.08F), true), 64, 64));
+        event.registerLayerDefinition(RIDER_WAIST_WIDE, () -> RiderWaistModel.createBodyLayer(false));
+        event.registerLayerDefinition(RIDER_WAIST_SLIM, () -> RiderWaistModel.createBodyLayer(true));
         event.registerLayerDefinition(KUUGA_SUIT_WIDE, () -> KuugaSuitModel.createBodyLayer(false));
         event.registerLayerDefinition(KUUGA_SUIT_SLIM, () -> KuugaSuitModel.createBodyLayer(true));
         event.registerLayerDefinition(DECADE_SUIT_WIDE, () -> DecadeSuitModel.createBodyLayer(false));
@@ -58,6 +62,7 @@ public final class KamenRiderClient {
             renderer.addLayer(new DecadeSuitLayer(renderer, event.getContext().bakeLayer(slim ? DECADE_SUIT_SLIM : DECADE_SUIT_WIDE), slim));
             renderer.addLayer(new DoubleSuitLayer(renderer, event.getContext().bakeLayer(slim ? DOUBLE_SUIT_SLIM : DOUBLE_SUIT_WIDE), slim));
             renderer.addLayer(new GeatsSuitLayer(renderer, event.getContext().bakeLayer(slim ? GEATS_SUIT_SLIM : GEATS_SUIT_WIDE), slim));
+            renderer.addLayer(new RiderWaistLayer(renderer, event.getContext().bakeLayer(slim ? RIDER_WAIST_SLIM : RIDER_WAIST_WIDE), slim));
         }
     }
 }
