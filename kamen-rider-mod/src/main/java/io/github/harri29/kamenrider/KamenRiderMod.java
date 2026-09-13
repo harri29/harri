@@ -61,6 +61,20 @@ public final class KamenRiderMod {
                             .attributes(SwordItem.createAttributes(Tiers.DIAMOND, 7.0F, -2.8F))
             ));
 
+    public static final DeferredItem<DecadeWeaponItem> RIDE_BOOKER = ITEMS.register("ride_booker",
+            () -> new DecadeWeaponItem(
+                    new Item.Properties()
+                            .stacksTo(1)
+                            .rarity(Rarity.EPIC)
+                            .attributes(SwordItem.createAttributes(Tiers.DIAMOND, 5.0F, -2.4F))
+            ));
+    public static final DeferredItem<DecadeCardItem> ATTACK_RIDE_SLASH = ITEMS.register("attack_ride_slash",
+            () -> new DecadeCardItem(DecadeCardItem.CardAction.ATTACK_RIDE_SLASH, cardProperties()));
+    public static final DeferredItem<DecadeCardItem> ATTACK_RIDE_BLAST = ITEMS.register("attack_ride_blast",
+            () -> new DecadeCardItem(DecadeCardItem.CardAction.ATTACK_RIDE_BLAST, cardProperties()));
+    public static final DeferredItem<DecadeCardItem> FINAL_ATTACK_RIDE = ITEMS.register("final_attack_ride_decade",
+            () -> new DecadeCardItem(DecadeCardItem.CardAction.FINAL_ATTACK_RIDE, cardProperties()));
+
     public static final DeferredItem<FormChangeItem> DOUBLE_FORM_CHANGER = ITEMS.register("double_form_changer",
             () -> new FormChangeItem("double", List.of(
                     RiderForm.DOUBLE_CYCLONE_JOKER,
@@ -85,6 +99,10 @@ public final class KamenRiderMod {
                         output.accept(KUUGA_DRAGON_ROD.get());
                         output.accept(KUUGA_TITAN_SWORD.get());
                         output.accept(DECADE_DRIVER.get());
+                        output.accept(RIDE_BOOKER.get());
+                        output.accept(ATTACK_RIDE_SLASH.get());
+                        output.accept(ATTACK_RIDE_BLAST.get());
+                        output.accept(FINAL_ATTACK_RIDE.get());
                         output.accept(DOUBLE_DRIVER.get());
                         output.accept(DOUBLE_FORM_CHANGER.get());
                         output.accept(DESIRE_DRIVER.get());
@@ -105,5 +123,9 @@ public final class KamenRiderMod {
 
     private static Item.Properties formItemProperties() {
         return new Item.Properties().stacksTo(1).rarity(Rarity.RARE);
+    }
+
+    private static Item.Properties cardProperties() {
+        return new Item.Properties().stacksTo(1).rarity(Rarity.EPIC);
     }
 }
