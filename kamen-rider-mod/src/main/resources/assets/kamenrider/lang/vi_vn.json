@@ -20,7 +20,14 @@
   "item.kamenrider.metal_shaft": "Metal Shaft",
   "item.kamenrider.trigger_magnum": "Trigger Magnum",
   "item.kamenrider.double_form_changer": "Hộp Gaia Memory cũ",
-  "item.kamenrider.geats_form_changer": "Hộp Raise Buckle",
+  "item.kamenrider.magnum_buckle": "Magnum Raise Buckle",
+  "item.kamenrider.boost_buckle": "Boost Raise Buckle",
+  "item.kamenrider.ninja_buckle": "Ninja Raise Buckle",
+  "item.kamenrider.zombie_buckle": "Zombie Raise Buckle",
+  "item.kamenrider.magnum_shooter": "Magnum Shooter",
+  "item.kamenrider.ninja_dualer": "Ninja Dualer",
+  "item.kamenrider.zombie_breaker": "Zombie Breaker",
+  "item.kamenrider.geats_form_changer": "Hộp Raise Buckle cũ",
 
   "memory.kamenrider.cyclone": "Cyclone Memory",
   "memory.kamenrider.heat": "Heat Memory",
@@ -44,8 +51,11 @@
   "rider.kamenrider.double_luna_metal": "Kamen Rider W - LunaMetal",
   "rider.kamenrider.double_luna_trigger": "Kamen Rider W - LunaTrigger",
   "rider.kamenrider.geats_magnum_boost": "Kamen Rider Geats - MagnumBoost",
-  "rider.kamenrider.geats_ninja": "Kamen Rider Geats - Ninja",
-  "rider.kamenrider.geats_zombie": "Kamen Rider Geats - Zombie",
+  "rider.kamenrider.geats_magnum_zombie": "Kamen Rider Geats - MagnumZombie",
+  "rider.kamenrider.geats_ninja_boost": "Kamen Rider Geats - NinjaBoost",
+  "rider.kamenrider.geats_ninja_zombie": "Kamen Rider Geats - NinjaZombie",
+  "rider.kamenrider.geats_ninja": "Kamen Rider Geats - Ninja cũ",
+  "rider.kamenrider.geats_zombie": "Kamen Rider Geats - Zombie cũ",
 
   "message.kamenrider.henshin": "Henshin! %s",
   "message.kamenrider.form_change": "Đổi Form! %s",
@@ -62,5 +72,8 @@
   "message.kamenrider.memory_requires_double": "Hãy biến thân thành Kamen Rider W trước khi cắm Gaia Memory.",
   "message.kamenrider.memory_insert": "Đã cắm %s -> %s",
   "message.kamenrider.double_weapon_requires_w": "Chỉ Kamen Rider W mới dùng được toàn bộ sức mạnh của vũ khí này.",
-  "message.kamenrider.double_weapon_wrong_memory": "Vũ khí này yêu cầu %s ở nửa phải của W."
+  "message.kamenrider.double_weapon_wrong_memory": "Vũ khí này yêu cầu %s ở nửa phải của W.",
+  "message.kamenrider.buckle_requires_geats": "Hãy biến thân thành Kamen Rider Geats trước khi lắp Raise Buckle.",
+  "message.kamenrider.buckle_set": "Đã lắp %s -> %s",
+  "message.kamenrider.geats_weapon_wrong_buckle": "Bạn chưa lắp Raise Buckle cần thiết cho vũ khí này."
 }
