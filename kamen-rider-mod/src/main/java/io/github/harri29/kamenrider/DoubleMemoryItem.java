@@ -61,12 +61,23 @@ public final class DoubleMemoryItem extends Item {
                 return InteractionResultHolder.success(stack);
             }
 
+            Memory left = leftMemory(current);
+            Memory right = rightMemory(current);
+
+            if (player.isShiftKeyDown()) {
+                boolean activeMemory = memory.side() == Side.LEFT ? left == memory : right == memory;
+                if (!activeMemory) {
+                    player.displayClientMessage(Component.translatable("message.kamenrider.maximum_drive_memory_inactive"), true);
+                    return InteractionResultHolder.success(stack);
+                }
+                RiderFinisher.maximumDrive(serverLevel, player, current, memory, this);
+                return InteractionResultHolder.success(stack);
+            }
+
             if (player.getCooldowns().isOnCooldown(this)) {
                 return InteractionResultHolder.success(stack);
             }
 
-            Memory left = leftMemory(current);
-            Memory right = rightMemory(current);
             if (memory.side() == Side.LEFT) {
                 left = memory;
             } else {
