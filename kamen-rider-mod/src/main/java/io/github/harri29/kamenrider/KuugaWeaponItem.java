@@ -15,12 +15,14 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
-/** Kuuga weapons with form-locked right-click techniques. */
+/** Kuuga weapons with form-locked right-click techniques and Shift finishers. */
 public final class KuugaWeaponItem extends Item {
     public enum Style {
         DRAGON_ROD,
         TITAN_SWORD
     }
+
+    private static final int FINISHER_COOLDOWN = 20 * 6;
 
     private final RiderForm requiredForm;
     private final Style style;
@@ -53,7 +55,11 @@ public final class KuugaWeaponItem extends Item {
                 return InteractionResultHolder.success(stack);
             }
 
-            performTechnique(serverLevel, player, stack);
+            if (player.isShiftKeyDown()) {
+                performFinisher(serverLevel, player, stack);
+            } else {
+                performTechnique(serverLevel, player, stack);
+            }
         }
 
         return InteractionResultHolder.success(stack);
@@ -68,29 +74,7 @@ public final class KuugaWeaponItem extends Item {
         float damage = style == Style.DRAGON_ROD ? 12.0F : 18.0F;
         double knockbackStrength = style == Style.DRAGON_ROD ? 0.85D : 1.45D;
         int cooldown = style == Style.DRAGON_ROD ? 32 : 52;
-        int hits = 0;
-
-        AABB searchBox = player.getBoundingBox().inflate(range);
-        for (LivingEntity target : level.getEntitiesOfClass(
-                LivingEntity.class,
-                searchBox,
-                entity -> entity != player && entity.isAlive()
-        )) {
-            Vec3 targetCenter = target.position().add(0.0D, target.getBbHeight() * 0.5D, 0.0D);
-            Vec3 toTarget = targetCenter.subtract(origin);
-            if (toTarget.lengthSqr() < 0.01D || toTarget.length() > range) {
-                continue;
-            }
-            if (toTarget.normalize().dot(look) < facingThreshold) {
-                continue;
-            }
-
-            if (target.hurt(player.damageSources().playerAttack(player), damage)) {
-                Vec3 push = look.scale(knockbackStrength).add(0.0D, style == Style.TITAN_SWORD ? 0.25D : 0.12D, 0.0D);
-                target.push(push.x, push.y, push.z);
-                hits++;
-            }
-        }
+        int hits = hitCone(level, player, look, origin, range, facingThreshold, damage, knockbackStrength);
 
         if (style == Style.DRAGON_ROD) {
             player.setDeltaMovement(player.getDeltaMovement().add(look.scale(0.36D)));
@@ -119,5 +103,77 @@ public final class KuugaWeaponItem extends Item {
                 Component.translatable("message.kamenrider.weapon_attack", stack.getHoverName(), hits),
                 true
         );
+    }
+
+    private void performFinisher(ServerLevel level, Player player, ItemStack stack) {
+        Vec3 look = player.getLookAngle().normalize();
+        Vec3 origin = player.position().add(0.0D, 1.0D, 0.0D);
+
+        double range = style == Style.DRAGON_ROD ? 6.4D : 5.0D;
+        double threshold = style == Style.DRAGON_ROD ? 0.02D : 0.20D;
+        float damage = style == Style.DRAGON_ROD ? 30.0F : 39.0F;
+        double knockback = style == Style.DRAGON_ROD ? 1.45D : 2.35D;
+        int hits = hitCone(level, player, look, origin, range, threshold, damage, knockback);
+
+        if (style == Style.DRAGON_ROD) {
+            player.setDeltaMovement(player.getDeltaMovement().add(look.scale(0.82D)).add(0.0D, 0.12D, 0.0D));
+            player.hurtMarked = true;
+            level.sendParticles(ParticleTypes.ELECTRIC_SPARK,
+                    player.getX() + look.x * 2.7D, player.getY() + 1.0D, player.getZ() + look.z * 2.7D,
+                    96, 1.25D, 0.8D, 1.25D, 0.16D);
+            level.sendParticles(ParticleTypes.END_ROD,
+                    player.getX() + look.x * 2.7D, player.getY() + 1.0D, player.getZ() + look.z * 2.7D,
+                    38, 0.9D, 0.7D, 0.9D, 0.08D);
+            level.playSound(null, player.blockPosition(), SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS, 1.2F, 1.25F);
+        } else {
+            level.sendParticles(ParticleTypes.CRIT,
+                    player.getX() + look.x * 2.0D, player.getY() + 0.9D, player.getZ() + look.z * 2.0D,
+                    120, 1.05D, 0.9D, 1.05D, 0.14D);
+            level.sendParticles(ParticleTypes.LARGE_SMOKE,
+                    player.getX() + look.x * 1.8D, player.getY() + 0.7D, player.getZ() + look.z * 1.8D,
+                    34, 0.8D, 0.5D, 0.8D, 0.06D);
+            level.playSound(null, player.blockPosition(), SoundEvents.GENERIC_EXPLODE.value(), SoundSource.PLAYERS, 1.1F, 0.70F);
+        }
+
+        player.getCooldowns().addCooldown(this, FINISHER_COOLDOWN);
+        player.displayClientMessage(
+                Component.translatable("message.kamenrider.kuuga_weapon_finisher", stack.getHoverName(), hits),
+                true
+        );
+    }
+
+    private int hitCone(
+            ServerLevel level,
+            Player player,
+            Vec3 look,
+            Vec3 origin,
+            double range,
+            double facingThreshold,
+            float damage,
+            double knockbackStrength
+    ) {
+        int hits = 0;
+        AABB searchBox = player.getBoundingBox().inflate(range);
+        for (LivingEntity target : level.getEntitiesOfClass(
+                LivingEntity.class,
+                searchBox,
+                entity -> entity != player && entity.isAlive()
+        )) {
+            Vec3 targetCenter = target.position().add(0.0D, target.getBbHeight() * 0.5D, 0.0D);
+            Vec3 toTarget = targetCenter.subtract(origin);
+            if (toTarget.lengthSqr() < 0.01D || toTarget.length() > range) {
+                continue;
+            }
+            if (toTarget.normalize().dot(look) < facingThreshold) {
+                continue;
+            }
+
+            if (target.hurt(player.damageSources().playerAttack(player), damage)) {
+                Vec3 push = look.scale(knockbackStrength).add(0.0D, style == Style.TITAN_SWORD ? 0.30D : 0.18D, 0.0D);
+                target.push(push.x, push.y, push.z);
+                hits++;
+            }
+        }
+        return hits;
     }
 }
