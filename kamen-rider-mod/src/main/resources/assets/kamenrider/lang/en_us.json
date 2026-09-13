@@ -20,7 +20,14 @@
   "item.kamenrider.metal_shaft": "Metal Shaft",
   "item.kamenrider.trigger_magnum": "Trigger Magnum",
   "item.kamenrider.double_form_changer": "Legacy Gaia Memory Case",
-  "item.kamenrider.geats_form_changer": "Raise Buckle Case",
+  "item.kamenrider.magnum_buckle": "Magnum Raise Buckle",
+  "item.kamenrider.boost_buckle": "Boost Raise Buckle",
+  "item.kamenrider.ninja_buckle": "Ninja Raise Buckle",
+  "item.kamenrider.zombie_buckle": "Zombie Raise Buckle",
+  "item.kamenrider.magnum_shooter": "Magnum Shooter",
+  "item.kamenrider.ninja_dualer": "Ninja Dualer",
+  "item.kamenrider.zombie_breaker": "Zombie Breaker",
+  "item.kamenrider.geats_form_changer": "Legacy Raise Buckle Case",
 
   "memory.kamenrider.cyclone": "Cyclone Memory",
   "memory.kamenrider.heat": "Heat Memory",
@@ -44,8 +51,11 @@
   "rider.kamenrider.double_luna_metal": "Kamen Rider W - LunaMetal",
   "rider.kamenrider.double_luna_trigger": "Kamen Rider W - LunaTrigger",
   "rider.kamenrider.geats_magnum_boost": "Kamen Rider Geats - MagnumBoost",
-  "rider.kamenrider.geats_ninja": "Kamen Rider Geats - Ninja",
-  "rider.kamenrider.geats_zombie": "Kamen Rider Geats - Zombie",
+  "rider.kamenrider.geats_magnum_zombie": "Kamen Rider Geats - MagnumZombie",
+  "rider.kamenrider.geats_ninja_boost": "Kamen Rider Geats - NinjaBoost",
+  "rider.kamenrider.geats_ninja_zombie": "Kamen Rider Geats - NinjaZombie",
+  "rider.kamenrider.geats_ninja": "Kamen Rider Geats - Legacy Ninja",
+  "rider.kamenrider.geats_zombie": "Kamen Rider Geats - Legacy Zombie",
 
   "message.kamenrider.henshin": "Henshin! %s",
   "message.kamenrider.form_change": "Form Change! %s",
@@ -62,5 +72,8 @@
   "message.kamenrider.memory_requires_double": "Transform into Kamen Rider W before inserting a Gaia Memory.",
   "message.kamenrider.memory_insert": "%s inserted -> %s",
   "message.kamenrider.double_weapon_requires_w": "Only Kamen Rider W can use this weapon at full power.",
-  "message.kamenrider.double_weapon_wrong_memory": "This weapon requires the %s on W's right side."
+  "message.kamenrider.double_weapon_wrong_memory": "This weapon requires the %s on W's right side.",
+  "message.kamenrider.buckle_requires_geats": "Transform into Kamen Rider Geats before setting a Raise Buckle.",
+  "message.kamenrider.buckle_set": "%s set -> %s",
+  "message.kamenrider.geats_weapon_wrong_buckle": "The required Raise Buckle is not equipped."
 }
