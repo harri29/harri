@@ -27,6 +27,12 @@ public final class KamenRiderClient {
     public static final ModelLayerLocation KUUGA_SUIT_SLIM = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(KamenRiderMod.MODID, "kuuga_suit"), "slim"
     );
+    public static final ModelLayerLocation DECADE_SUIT_WIDE = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(KamenRiderMod.MODID, "decade_suit"), "wide"
+    );
+    public static final ModelLayerLocation DECADE_SUIT_SLIM = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(KamenRiderMod.MODID, "decade_suit"), "slim"
+    );
 
     public KamenRiderClient(IEventBus modBus) {
         modBus.addListener(KamenRiderClient::registerLayerDefinitions);
@@ -44,6 +50,8 @@ public final class KamenRiderClient {
         );
         event.registerLayerDefinition(KUUGA_SUIT_WIDE, () -> KuugaSuitModel.createBodyLayer(false));
         event.registerLayerDefinition(KUUGA_SUIT_SLIM, () -> KuugaSuitModel.createBodyLayer(true));
+        event.registerLayerDefinition(DECADE_SUIT_WIDE, () -> DecadeSuitModel.createBodyLayer(false));
+        event.registerLayerDefinition(DECADE_SUIT_SLIM, () -> DecadeSuitModel.createBodyLayer(true));
     }
 
     private static void addPlayerLayers(EntityRenderersEvent.AddLayers event) {
@@ -61,6 +69,11 @@ public final class KamenRiderClient {
             renderer.addLayer(new KuugaSuitLayer(
                     renderer,
                     event.getContext().bakeLayer(slim ? KUUGA_SUIT_SLIM : KUUGA_SUIT_WIDE),
+                    slim
+            ));
+            renderer.addLayer(new DecadeSuitLayer(
+                    renderer,
+                    event.getContext().bakeLayer(slim ? DECADE_SUIT_SLIM : DECADE_SUIT_WIDE),
                     slim
             ));
         }
