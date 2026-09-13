@@ -1,0 +1,15 @@
+{
+  "itemGroup.kamenrider": "Kamen Rider Craft",
+  "item.kamenrider.kuuga_arcle": "Kuuga Arcle",
+  "item.kamenrider.decade_driver": "Decade Driver",
+  "item.kamenrider.double_driver": "Double Driver",
+  "item.kamenrider.desire_driver": "Desire Driver",
+  "rider.kamenrider.kuuga": "Kamen Rider Kuuga",
+  "rider.kamenrider.decade": "Kamen Rider Decade",
+  "rider.kamenrider.double": "Kamen Rider W",
+  "rider.kamenrider.geats": "Kamen Rider Geats",
+  "message.kamenrider.henshin": "Henshin! %s",
+  "message.kamenrider.dehenshin": "Transformation released.",
+  "message.kamenrider.rider_kick": "%s - RIDER KICK! Hits: %s",
+  "message.kamenrider.finisher_cooldown": "Finisher is recharging..."
+}
