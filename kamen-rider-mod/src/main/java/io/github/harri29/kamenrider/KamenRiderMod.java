@@ -75,6 +75,34 @@ public final class KamenRiderMod {
     public static final DeferredItem<DecadeCardItem> FINAL_ATTACK_RIDE = ITEMS.register("final_attack_ride_decade",
             () -> new DecadeCardItem(DecadeCardItem.CardAction.FINAL_ATTACK_RIDE, cardProperties()));
 
+    public static final DeferredItem<DoubleMemoryItem> CYCLONE_MEMORY = ITEMS.register("cyclone_memory",
+            () -> new DoubleMemoryItem(DoubleMemoryItem.Memory.CYCLONE, memoryProperties()));
+    public static final DeferredItem<DoubleMemoryItem> HEAT_MEMORY = ITEMS.register("heat_memory",
+            () -> new DoubleMemoryItem(DoubleMemoryItem.Memory.HEAT, memoryProperties()));
+    public static final DeferredItem<DoubleMemoryItem> LUNA_MEMORY = ITEMS.register("luna_memory",
+            () -> new DoubleMemoryItem(DoubleMemoryItem.Memory.LUNA, memoryProperties()));
+    public static final DeferredItem<DoubleMemoryItem> JOKER_MEMORY = ITEMS.register("joker_memory",
+            () -> new DoubleMemoryItem(DoubleMemoryItem.Memory.JOKER, memoryProperties()));
+    public static final DeferredItem<DoubleMemoryItem> METAL_MEMORY = ITEMS.register("metal_memory",
+            () -> new DoubleMemoryItem(DoubleMemoryItem.Memory.METAL, memoryProperties()));
+    public static final DeferredItem<DoubleMemoryItem> TRIGGER_MEMORY = ITEMS.register("trigger_memory",
+            () -> new DoubleMemoryItem(DoubleMemoryItem.Memory.TRIGGER, memoryProperties()));
+
+    public static final DeferredItem<DoubleWeaponItem> METAL_SHAFT = ITEMS.register("metal_shaft",
+            () -> new DoubleWeaponItem(
+                    DoubleWeaponItem.Style.METAL_SHAFT,
+                    new Item.Properties()
+                            .stacksTo(1)
+                            .rarity(Rarity.EPIC)
+                            .attributes(SwordItem.createAttributes(Tiers.DIAMOND, 4.5F, -2.2F))
+            ));
+    public static final DeferredItem<DoubleWeaponItem> TRIGGER_MAGNUM = ITEMS.register("trigger_magnum",
+            () -> new DoubleWeaponItem(
+                    DoubleWeaponItem.Style.TRIGGER_MAGNUM,
+                    new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)
+            ));
+
+    // Kept registered for save compatibility with v0.2-v0.5, but hidden from the creative tab.
     public static final DeferredItem<FormChangeItem> DOUBLE_FORM_CHANGER = ITEMS.register("double_form_changer",
             () -> new FormChangeItem("double", List.of(
                     RiderForm.DOUBLE_CYCLONE_JOKER,
@@ -98,13 +126,23 @@ public final class KamenRiderMod {
                         output.accept(KUUGA_FORM_CHANGER.get());
                         output.accept(KUUGA_DRAGON_ROD.get());
                         output.accept(KUUGA_TITAN_SWORD.get());
+
                         output.accept(DECADE_DRIVER.get());
                         output.accept(RIDE_BOOKER.get());
                         output.accept(ATTACK_RIDE_SLASH.get());
                         output.accept(ATTACK_RIDE_BLAST.get());
                         output.accept(FINAL_ATTACK_RIDE.get());
+
                         output.accept(DOUBLE_DRIVER.get());
-                        output.accept(DOUBLE_FORM_CHANGER.get());
+                        output.accept(CYCLONE_MEMORY.get());
+                        output.accept(JOKER_MEMORY.get());
+                        output.accept(HEAT_MEMORY.get());
+                        output.accept(METAL_MEMORY.get());
+                        output.accept(LUNA_MEMORY.get());
+                        output.accept(TRIGGER_MEMORY.get());
+                        output.accept(METAL_SHAFT.get());
+                        output.accept(TRIGGER_MAGNUM.get());
+
                         output.accept(DESIRE_DRIVER.get());
                         output.accept(GEATS_FORM_CHANGER.get());
                     })
@@ -127,5 +165,9 @@ public final class KamenRiderMod {
 
     private static Item.Properties cardProperties() {
         return new Item.Properties().stacksTo(1).rarity(Rarity.EPIC);
+    }
+
+    private static Item.Properties memoryProperties() {
+        return new Item.Properties().stacksTo(1).rarity(Rarity.RARE);
     }
 }
