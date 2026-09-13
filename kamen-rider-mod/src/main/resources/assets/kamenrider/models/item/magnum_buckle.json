@@ -1,0 +1,4 @@
+{
+  "parent":"kamenrider:item/raise_buckle_base",
+  "textures":{"body":"minecraft:block/white_concrete","accent":"minecraft:block/red_concrete","metal":"minecraft:block/light_gray_concrete"}
+}
