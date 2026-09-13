@@ -1,5 +1,9 @@
 {
   "itemGroup.kamenrider": "Kamen Rider Craft",
+  "item.kamenrider.kuuga_trial_sigil": "Kuuga Trial Sigil",
+  "item.kamenrider.decade_trial_sigil": "Decade Trial Sigil",
+  "item.kamenrider.double_trial_sigil": "W Trial Sigil",
+  "item.kamenrider.geats_trial_sigil": "Geats Trial Sigil",
   "item.kamenrider.kuuga_arcle": "Kuuga Arcle",
   "item.kamenrider.decade_driver": "Decade Driver",
   "item.kamenrider.double_driver": "Double Driver",
@@ -28,6 +32,15 @@
   "item.kamenrider.ninja_dualer": "Ninja Dualer",
   "item.kamenrider.zombie_breaker": "Zombie Breaker",
   "item.kamenrider.geats_form_changer": "Legacy Raise Buckle Case",
+
+  "series.kamenrider.kuuga": "Kamen Rider Kuuga",
+  "series.kamenrider.decade": "Kamen Rider Decade",
+  "series.kamenrider.double": "Kamen Rider W",
+  "series.kamenrider.geats": "Kamen Rider Geats",
+  "boss.kamenrider.trial_kuuga": "Kuuga Trial Guardian",
+  "boss.kamenrider.trial_decade": "Decade Trial Guardian",
+  "boss.kamenrider.trial_double": "W Trial Guardian",
+  "boss.kamenrider.trial_geats": "Geats Trial Guardian",
 
   "memory.kamenrider.cyclone": "Cyclone Memory",
   "memory.kamenrider.heat": "Heat Memory",
@@ -85,5 +98,7 @@
   "message.kamenrider.buckle_set": "%s set -> %s",
   "message.kamenrider.buckle_finisher": "%s FINISHER! %s - Hits: %s",
   "message.kamenrider.buckle_finisher_inactive": "That Raise Buckle is not currently equipped in the Desire Driver.",
-  "message.kamenrider.geats_weapon_wrong_buckle": "The required Raise Buckle is not equipped."
+  "message.kamenrider.geats_weapon_wrong_buckle": "The required Raise Buckle is not equipped.",
+  "message.kamenrider.trial_begin": "Rider Trial started: %s",
+  "message.kamenrider.trial_clear": "Trial cleared! %s Driver and starter equipment unlocked."
 }
