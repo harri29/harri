@@ -12,6 +12,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.common.NeoForge;
 
 @Mod(value = KamenRiderMod.MODID, dist = Dist.CLIENT)
 public final class KamenRiderClient {
@@ -29,6 +30,9 @@ public final class KamenRiderClient {
     public KamenRiderClient(IEventBus modBus) {
         modBus.addListener(KamenRiderClient::registerLayerDefinitions);
         modBus.addListener(KamenRiderClient::addPlayerLayers);
+        NeoForge.EVENT_BUS.addListener(RiderFirstPersonPresentation::onRenderHand);
+        NeoForge.EVENT_BUS.addListener(RiderFirstPersonPresentation::onComputeFov);
+        NeoForge.EVENT_BUS.addListener(RiderFirstPersonPresentation::onCameraAngles);
     }
 
     private static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
