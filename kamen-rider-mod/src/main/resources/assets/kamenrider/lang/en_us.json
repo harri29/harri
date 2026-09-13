@@ -36,6 +36,11 @@
   "memory.kamenrider.metal": "Metal Memory",
   "memory.kamenrider.trigger": "Trigger Memory",
 
+  "buckle.kamenrider.magnum": "Magnum Raise Buckle",
+  "buckle.kamenrider.boost": "Boost Raise Buckle",
+  "buckle.kamenrider.ninja": "Ninja Raise Buckle",
+  "buckle.kamenrider.zombie": "Zombie Raise Buckle",
+
   "rider.kamenrider.kuuga_mighty": "Kamen Rider Kuuga - Mighty Form",
   "rider.kamenrider.kuuga_dragon": "Kamen Rider Kuuga - Dragon Form",
   "rider.kamenrider.kuuga_pegasus": "Kamen Rider Kuuga - Pegasus Form",
@@ -66,14 +71,19 @@
   "message.kamenrider.weapon_wrong_form": "This weapon requires %s.",
   "message.kamenrider.weapon_cooldown": "Weapon technique is recharging...",
   "message.kamenrider.weapon_attack": "%s technique! Hits: %s",
+  "message.kamenrider.kuuga_weapon_finisher": "%s FINISHER! Hits: %s",
   "message.kamenrider.card_requires_decade": "Only Kamen Rider Decade can use this Rider Card.",
   "message.kamenrider.card_cooldown": "The Rider Card is recharging...",
   "message.kamenrider.card_activate": "%s! Targets hit: %s",
   "message.kamenrider.memory_requires_double": "Transform into Kamen Rider W before inserting a Gaia Memory.",
   "message.kamenrider.memory_insert": "%s inserted -> %s",
+  "message.kamenrider.maximum_drive": "%s MAXIMUM DRIVE! %s - Hits: %s",
+  "message.kamenrider.maximum_drive_memory_inactive": "That Gaia Memory is not currently inserted in the Double Driver.",
   "message.kamenrider.double_weapon_requires_w": "Only Kamen Rider W can use this weapon at full power.",
   "message.kamenrider.double_weapon_wrong_memory": "This weapon requires the %s on W's right side.",
   "message.kamenrider.buckle_requires_geats": "Transform into Kamen Rider Geats before setting a Raise Buckle.",
   "message.kamenrider.buckle_set": "%s set -> %s",
+  "message.kamenrider.buckle_finisher": "%s FINISHER! %s - Hits: %s",
+  "message.kamenrider.buckle_finisher_inactive": "That Raise Buckle is not currently equipped in the Desire Driver.",
   "message.kamenrider.geats_weapon_wrong_buckle": "The required Raise Buckle is not equipped."
 }
