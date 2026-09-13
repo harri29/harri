@@ -12,7 +12,7 @@ import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
-/** Networking bridge used by client suit rendering. */
+/** Networking bridge used by Rider rendering and first-person presentation FX. */
 public final class RiderNetworking {
     private RiderNetworking() {
     }
@@ -26,11 +26,20 @@ public final class RiderNetworking {
                     RiderStatePayload.STREAM_CODEC,
                     (payload, context) -> context.enqueueWork(() -> RiderClientState.accept(payload))
             );
+            registrar.playToClient(
+                    RiderPresentationPayload.TYPE,
+                    RiderPresentationPayload.STREAM_CODEC,
+                    (payload, context) -> context.enqueueWork(() -> RiderClientState.accept(payload))
+            );
         } else {
-            // Dedicated servers still declare the clientbound payload type.
             registrar.playToClient(
                     RiderStatePayload.TYPE,
                     RiderStatePayload.STREAM_CODEC,
+                    (payload, context) -> { }
+            );
+            registrar.playToClient(
+                    RiderPresentationPayload.TYPE,
+                    RiderPresentationPayload.STREAM_CODEC,
                     (payload, context) -> { }
             );
         }
@@ -45,6 +54,17 @@ public final class RiderNetworking {
         PacketDistributor.sendToPlayersTrackingEntityAndSelf(
                 serverPlayer,
                 new RiderStatePayload(serverPlayer.getId(), formId, true)
+        );
+    }
+
+    /** Short cinematic cue used by first-person camera/hand presentation. */
+    public static void presentation(Player player, String effectId) {
+        if (!(player instanceof ServerPlayer serverPlayer)) {
+            return;
+        }
+        PacketDistributor.sendToPlayersTrackingEntityAndSelf(
+                serverPlayer,
+                new RiderPresentationPayload(serverPlayer.getId(), effectId)
         );
     }
 
