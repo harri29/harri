@@ -6,6 +6,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.Tiers;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
@@ -39,6 +41,26 @@ public final class KamenRiderMod {
                     RiderForm.KUUGA_TITAN
             ), formItemProperties()));
 
+    public static final DeferredItem<KuugaWeaponItem> KUUGA_DRAGON_ROD = ITEMS.register("kuuga_dragon_rod",
+            () -> new KuugaWeaponItem(
+                    RiderForm.KUUGA_DRAGON,
+                    KuugaWeaponItem.Style.DRAGON_ROD,
+                    new Item.Properties()
+                            .stacksTo(1)
+                            .rarity(Rarity.EPIC)
+                            .attributes(SwordItem.createAttributes(Tiers.DIAMOND, 4.0F, -2.2F))
+            ));
+
+    public static final DeferredItem<KuugaWeaponItem> KUUGA_TITAN_SWORD = ITEMS.register("kuuga_titan_sword",
+            () -> new KuugaWeaponItem(
+                    RiderForm.KUUGA_TITAN,
+                    KuugaWeaponItem.Style.TITAN_SWORD,
+                    new Item.Properties()
+                            .stacksTo(1)
+                            .rarity(Rarity.EPIC)
+                            .attributes(SwordItem.createAttributes(Tiers.DIAMOND, 7.0F, -2.8F))
+            ));
+
     public static final DeferredItem<FormChangeItem> DOUBLE_FORM_CHANGER = ITEMS.register("double_form_changer",
             () -> new FormChangeItem("double", List.of(
                     RiderForm.DOUBLE_CYCLONE_JOKER,
@@ -60,6 +82,8 @@ public final class KamenRiderMod {
                     .displayItems((parameters, output) -> {
                         output.accept(KUUGA_ARCLE.get());
                         output.accept(KUUGA_FORM_CHANGER.get());
+                        output.accept(KUUGA_DRAGON_ROD.get());
+                        output.accept(KUUGA_TITAN_SWORD.get());
                         output.accept(DECADE_DRIVER.get());
                         output.accept(DOUBLE_DRIVER.get());
                         output.accept(DOUBLE_FORM_CHANGER.get());
