@@ -12,6 +12,10 @@ on:
       - 'kamen-rider-mod/**'
       - '.github/workflows/kamen-rider-mod-build.yml'
 
+concurrency:
+  group: kamen-rider-mod-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
