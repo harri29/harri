@@ -93,7 +93,7 @@ public final class RiderFinisher {
                 80, 1.4D, 0.8D, 1.4D, 0.12D);
         level.sendParticles(ParticleTypes.END_ROD, player.getX(), player.getY() + 1.0D, player.getZ(),
                 36, 1.0D, 0.8D, 1.0D, 0.08D);
-        level.playSound(null, player.blockPosition(), SoundEvents.ELYTRA_FLYING, SoundSource.PLAYERS, 1.0F, 1.45F);
+        level.playSound(null, player.blockPosition(), SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 1.0F, 1.45F);
         return hits;
     }
 
@@ -104,14 +104,14 @@ public final class RiderFinisher {
                 player.getZ() + look.z * 2.0D, 72, 1.0D, 0.8D, 1.0D, 0.08D);
         level.sendParticles(ParticleTypes.LAVA, player.getX() + look.x * 1.8D, player.getY() + 0.8D,
                 player.getZ() + look.z * 1.8D, 18, 0.7D, 0.5D, 0.7D, 0.03D);
-        level.playSound(null, player.blockPosition(), SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS, 1.0F, 0.9F);
+        level.playSound(null, player.blockPosition(), SoundEvents.FIREWORK_ROCKET_BLAST, SoundSource.PLAYERS, 1.0F, 0.9F);
         return hits;
     }
 
     private static int lunaDrive(ServerLevel level, Player player) {
         int hits = beam(level, player, 14.0D, 0.88D, 25.0F);
         trace(level, player, ParticleTypes.END_ROD, 14.0D, 0.65D);
-        level.playSound(null, player.blockPosition(), SoundEvents.AMETHYST_BLOCK_RESONATE, SoundSource.PLAYERS, 1.0F, 1.4F);
+        level.playSound(null, player.blockPosition(), SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS, 1.0F, 1.4F);
         return hits;
     }
 
@@ -131,7 +131,7 @@ public final class RiderFinisher {
         Vec3 look = player.getLookAngle().normalize();
         level.sendParticles(ParticleTypes.CRIT, player.getX() + look.x * 1.5D, player.getY() + 1.0D,
                 player.getZ() + look.z * 1.5D, 96, 1.0D, 0.8D, 1.0D, 0.1D);
-        level.playSound(null, player.blockPosition(), SoundEvents.ANVIL_LAND, SoundSource.PLAYERS, 0.9F, 0.72F);
+        level.playSound(null, player.blockPosition(), SoundEvents.GENERIC_EXPLODE.value(), SoundSource.PLAYERS, 0.9F, 0.72F);
         return hits;
     }
 
@@ -145,7 +145,7 @@ public final class RiderFinisher {
     private static int magnumStrike(ServerLevel level, Player player) {
         int hits = beam(level, player, 20.0D, 0.95D, 33.0F);
         trace(level, player, ParticleTypes.ELECTRIC_SPARK, 20.0D, 0.7D);
-        level.playSound(null, player.blockPosition(), SoundEvents.FIREWORK_ROCKET_LARGE_BLAST, SoundSource.PLAYERS, 1.0F, 1.2F);
+        level.playSound(null, player.blockPosition(), SoundEvents.FIREWORK_ROCKET_BLAST, SoundSource.PLAYERS, 1.0F, 1.2F);
         return hits;
     }
 
