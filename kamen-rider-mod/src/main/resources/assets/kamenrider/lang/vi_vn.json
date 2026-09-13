@@ -1,5 +1,9 @@
 {
   "itemGroup.kamenrider": "Kamen Rider Craft",
+  "item.kamenrider.kuuga_trial_sigil": "Ấn Thử thách Kuuga",
+  "item.kamenrider.decade_trial_sigil": "Ấn Thử thách Decade",
+  "item.kamenrider.double_trial_sigil": "Ấn Thử thách W",
+  "item.kamenrider.geats_trial_sigil": "Ấn Thử thách Geats",
   "item.kamenrider.kuuga_arcle": "Arcle của Kuuga",
   "item.kamenrider.decade_driver": "Decade Driver",
   "item.kamenrider.double_driver": "Double Driver",
@@ -28,6 +32,15 @@
   "item.kamenrider.ninja_dualer": "Ninja Dualer",
   "item.kamenrider.zombie_breaker": "Zombie Breaker",
   "item.kamenrider.geats_form_changer": "Hộp Raise Buckle cũ",
+
+  "series.kamenrider.kuuga": "Kamen Rider Kuuga",
+  "series.kamenrider.decade": "Kamen Rider Decade",
+  "series.kamenrider.double": "Kamen Rider W",
+  "series.kamenrider.geats": "Kamen Rider Geats",
+  "boss.kamenrider.trial_kuuga": "Hộ vệ Thử thách Kuuga",
+  "boss.kamenrider.trial_decade": "Hộ vệ Thử thách Decade",
+  "boss.kamenrider.trial_double": "Hộ vệ Thử thách W",
+  "boss.kamenrider.trial_geats": "Hộ vệ Thử thách Geats",
 
   "memory.kamenrider.cyclone": "Cyclone Memory",
   "memory.kamenrider.heat": "Heat Memory",
@@ -85,5 +98,7 @@
   "message.kamenrider.buckle_set": "Đã lắp %s -> %s",
   "message.kamenrider.buckle_finisher": "%s - FINISHER! %s - Trúng: %s mục tiêu",
   "message.kamenrider.buckle_finisher_inactive": "Raise Buckle này hiện chưa được lắp trên Desire Driver.",
-  "message.kamenrider.geats_weapon_wrong_buckle": "Bạn chưa lắp Raise Buckle cần thiết cho vũ khí này."
+  "message.kamenrider.geats_weapon_wrong_buckle": "Bạn chưa lắp Raise Buckle cần thiết cho vũ khí này.",
+  "message.kamenrider.trial_begin": "Bắt đầu Thử thách Rider: %s",
+  "message.kamenrider.trial_clear": "Hoàn thành thử thách! Đã mở khóa Driver và trang bị khởi đầu của %s."
 }
