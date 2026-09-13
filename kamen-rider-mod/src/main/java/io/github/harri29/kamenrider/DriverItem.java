@@ -1,5 +1,6 @@
 package io.github.harri29.kamenrider;
 
+import io.github.harri29.kamenrider.network.RiderNetworking;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -70,6 +71,7 @@ public class DriverItem extends Item {
         player.setDeltaMovement(player.getDeltaMovement().add(look.scale(1.15D)).add(0.0D, 0.22D, 0.0D));
         player.hurtMarked = true;
         player.getCooldowns().addCooldown(this, FINISHER_COOLDOWN);
+        RiderNetworking.presentation(player, "rider_kick");
 
         level.playSound(null, player.blockPosition(), SoundEvents.GENERIC_EXPLODE.value(), SoundSource.PLAYERS, 1.0F, 1.25F);
         level.sendParticles(ParticleTypes.CRIT, player.getX() + look.x * 2.0D, player.getY() + 1.0D,
