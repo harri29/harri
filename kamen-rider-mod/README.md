@@ -18,6 +18,8 @@ Decade now has original Minecraft-style armor geometry instead of the generic co
 
 The armor is attached to the vanilla player skeleton, so normal walk, sprint, crouch and arm animation still drive the custom pieces. Henshin assembly is staged rather than appearing all at once.
 
+Editable Blockbench source is included at `assets-src/blockbench/decade_suit.bbmodel`; runtime geometry mirrors it in `client/DecadeSuitModel.java` without adding an external animation dependency.
+
 ### Ride Booker
 The **Ride Booker** is Decade's dedicated weapon item.
 
@@ -33,7 +35,7 @@ The **Ride Booker** is Decade's dedicated weapon item.
 - **Attack Ride: Blast** — long-range multi-target beam/cone attack.
 - **Final Attack Ride: Decade** — forward burst with high-damage finisher hit cone.
 
-This structure is intended to support later `Kamen Ride`, `Form Ride` and additional `Attack Ride` cards without duplicating item logic.
+All three cards now have thin 3D card models instead of flat paper icons. This structure is intended to support later `Kamen Ride`, `Form Ride` and additional `Attack Ride` cards without duplicating item logic.
 
 ### Kuuga remains fully implemented
 - dedicated Kuuga suit geometry
@@ -94,7 +96,7 @@ Jar output is written to `build/libs/`.
 ## Next milestones
 
 - in-game visual QA for Decade proportions and card rails
-- editable Decade Blockbench source + original texture sheet
+- original Kuuga/Decade texture sheets authored from the Blockbench sources
 - belt-on-waist and Driver activation animation
 - Kamen Ride / Form Ride card-state architecture
 - dedicated W and Geats suit geometry
