@@ -26,6 +26,11 @@ public enum RiderForm {
     DOUBLE_LUNA_TRIGGER("double_luna_trigger", "double", "rider.kamenrider.double_luna_trigger", 2, 1, 0, 2, 24.0F, 1.34F, 0xB5A332),
 
     GEATS_MAGNUM_BOOST("geats_magnum_boost", "geats", "rider.kamenrider.geats_magnum_boost", 2, 2, 0, 1, 26.0F, 1.36F, 0xF44336),
+    GEATS_MAGNUM_ZOMBIE("geats_magnum_zombie", "geats", "rider.kamenrider.geats_magnum_zombie", 1, 3, 2, 0, 31.0F, 1.15F, 0xB72C48),
+    GEATS_NINJA_BOOST("geats_ninja_boost", "geats", "rider.kamenrider.geats_ninja_boost", 3, 1, 0, 3, 25.0F, 1.44F, 0x00A98F),
+    GEATS_NINJA_ZOMBIE("geats_ninja_zombie", "geats", "rider.kamenrider.geats_ninja_zombie", 2, 2, 2, 2, 29.0F, 1.28F, 0x3A8A70),
+
+    // Legacy standalone forms retained so older worlds keep loading safely.
     GEATS_NINJA("geats_ninja", "geats", "rider.kamenrider.geats_ninja", 3, 1, 0, 2, 24.0F, 1.44F, 0x00897B),
     GEATS_ZOMBIE("geats_zombie", "geats", "rider.kamenrider.geats_zombie", 0, 3, 2, 0, 31.0F, 1.04F, 0x5E35B1);
 
