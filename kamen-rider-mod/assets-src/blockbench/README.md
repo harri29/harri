@@ -1,17 +1,27 @@
 # Blockbench source assets
 
-`kuuga_suit.bbmodel` is the editable Blockbench 5.x source for the first dedicated Rider suit.
+This folder contains editable Blockbench 5.x source projects for the dedicated Rider suits.
 
-The runtime NeoForge model currently mirrors the same design in `client/KuugaSuitModel.java` so the mod has no external animation/model dependency. The important parent groups are Helmet, Torso and Shoulders; keep armor pieces aligned to the vanilla player skeleton when editing.
+- `kuuga_suit.bbmodel` -> runtime geometry in `client/KuugaSuitModel.java`
+- `decade_suit.bbmodel` -> runtime geometry in `client/DecadeSuitModel.java`
 
-## Current Kuuga render passes
+The NeoForge runtime models mirror these designs directly in Java so the mod stays dependency-light. Keep Helmet, Torso and Shoulders aligned to the vanilla player skeleton when editing.
 
-- Base: helmet shell, chest armor, gauntlets and shins. Tint comes from the active Kuuga form.
-- Accent: horns, shoulder/crest/belt details. Rendered as warm metallic gold.
-- Core: eye band and Arcle core. Rendered full-bright.
+## Kuuga render passes
+
+- Base: helmet shell, chest armor, gauntlets and shins; tint follows the active Kuuga form.
+- Accent: horns, shoulder/crest/belt details; warm metallic gold.
+- Core: eye band and Arcle core; full-bright.
+
+## Decade render passes
+
+- Base: black helmet/body armor, forearms and shins.
+- Accent: magenta shoulders and chest stripe.
+- Card: white card rails and Decadriver frame.
+- Core: cyan eye bar and Driver core; full-bright.
 
 ## Henshin timeline
 
-Runtime assembly is staged over 1.20 seconds: torso -> shoulders -> arms/legs -> belt/crest -> helmet -> horns/core.
+Both dedicated suits assemble in stages rather than appearing instantly. Kuuga builds torso -> shoulders -> limbs -> belt/crest -> helmet -> horns/core. Decade builds torso -> shoulders -> limbs -> Driver/chest stripe -> helmet -> card rails -> eyes/core.
 
-Do not add ripped TV/movie textures or audio to this directory. Original/remade assets are preferred so the repository stays distributable.
+Do not add ripped TV/movie textures, models or audio to this directory. Original/remade assets are preferred so the repository stays distributable.
