@@ -7,6 +7,10 @@
   "item.kamenrider.kuuga_form_changer": "Kuuga Form Changer",
   "item.kamenrider.kuuga_dragon_rod": "Kuuga Dragon Rod",
   "item.kamenrider.kuuga_titan_sword": "Kuuga Titan Sword",
+  "item.kamenrider.ride_booker": "Ride Booker",
+  "item.kamenrider.attack_ride_slash": "Attack Ride: Slash",
+  "item.kamenrider.attack_ride_blast": "Attack Ride: Blast",
+  "item.kamenrider.final_attack_ride_decade": "Final Attack Ride: Decade",
   "item.kamenrider.double_form_changer": "Gaia Memory Case",
   "item.kamenrider.geats_form_changer": "Raise Buckle Case",
 
@@ -30,5 +34,8 @@
   "message.kamenrider.finisher_cooldown": "Finisher is recharging...",
   "message.kamenrider.weapon_wrong_form": "This weapon requires %s.",
   "message.kamenrider.weapon_cooldown": "Weapon technique is recharging...",
-  "message.kamenrider.weapon_attack": "%s technique! Hits: %s"
+  "message.kamenrider.weapon_attack": "%s technique! Hits: %s",
+  "message.kamenrider.card_requires_decade": "Only Kamen Rider Decade can use this Rider Card.",
+  "message.kamenrider.card_cooldown": "The Rider Card is recharging...",
+  "message.kamenrider.card_activate": "%s! Targets hit: %s"
 }
