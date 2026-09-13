@@ -1,5 +1,6 @@
 package io.github.harri29.kamenrider;
 
+import io.github.harri29.kamenrider.network.RiderNetworking;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -49,6 +50,7 @@ public final class RiderTransformation {
 
     public static void dehenshin(ServerLevel level, Player player) {
         clearTransformation(player);
+        RiderNetworking.sync(player, null);
         player.displayClientMessage(Component.translatable("message.kamenrider.dehenshin"), true);
         level.playSound(null, player.blockPosition(), SoundEvents.BEACON_DEACTIVATE, SoundSource.PLAYERS, 0.8F, 1.0F);
         level.sendParticles(ParticleTypes.CLOUD, player.getX(), player.getY() + 1.0D, player.getZ(),
@@ -80,6 +82,7 @@ public final class RiderTransformation {
         player.addTag(TRANSFORMED_TAG);
         player.addTag(FORM_TAG_PREFIX + form.id());
         applyEffects(player, form);
+        RiderNetworking.sync(player, form);
     }
 
     private static void applyEffects(Player player, RiderForm form) {
