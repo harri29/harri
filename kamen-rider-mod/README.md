@@ -2,79 +2,104 @@
 
 Fan-made Minecraft Java mod focused on **henshin -> Rider-specific equipment -> form/ability play -> finisher** gameplay.
 
-## v0.5 highlights
+## v0.6 highlights
 
-### Decade is the second dedicated full-suit Rider
-Decade now has original Minecraft-style armor geometry instead of the generic colored Rider shell:
+### Kamen Rider W is now the third dedicated full-suit Rider
+W no longer uses the generic colored Rider shell. The new dedicated model is vertically split into two independently colored halves on the vanilla player skeleton:
 
-- dark undersuit
-- black helmet shell
-- cyan full-bright eye bar
-- four card-like face/crown rails
-- black chest armor
-- magenta chest stripe and shoulder accents
-- forearm and shin armor
-- Decadriver frame and glowing core
+- left half: Cyclone / Heat / Luna
+- right half: Joker / Metal / Trigger
+- silver center seam and Double Driver frame
+- red full-bright compound eyes
+- wide and slim player skin support
+- staged Henshin where the two halves assemble with slightly offset timing
 
-The armor is attached to the vanilla player skeleton, so normal walk, sprint, crouch and arm animation still drive the custom pieces. Henshin assembly is staged rather than appearing all at once.
+The editable art source is included at `assets-src/blockbench/double_suit.bbmodel`.
 
-Editable Blockbench source is included at `assets-src/blockbench/decade_suit.bbmodel`; runtime geometry mirrors it in `client/DecadeSuitModel.java` without adding an external animation dependency.
+### Real Gaia Memory pairing
+The old `Double Form Changer` flow has been replaced in the creative tab by six individual Gaia Memory items:
 
-### Ride Booker
-The **Ride Booker** is Decade's dedicated weapon item.
+- Cyclone Memory
+- Heat Memory
+- Luna Memory
+- Joker Memory
+- Metal Memory
+- Trigger Memory
 
-- Right-click: Sword Mode, a forward melee sweep.
-- Shift + right-click: Gun Mode, a focused long-range shot trace.
-- Both modes require Kamen Rider Decade, have independent behavior, particles, knockback and cooldown handling.
-- A 3D handheld item model is included using vanilla Minecraft materials.
+Each Memory changes only its own side of W. This produces the complete 3x3 matrix of nine implemented forms:
 
-### Rider Card foundation
-`DecadeCardItem` is a reusable card-action class for future Decade systems. v0.5 includes:
+- CycloneJoker
+- CycloneMetal
+- CycloneTrigger
+- HeatJoker
+- HeatMetal
+- HeatTrigger
+- LunaJoker
+- LunaMetal
+- LunaTrigger
 
-- **Attack Ride: Slash** — stronger wide melee technique.
-- **Attack Ride: Blast** — long-range multi-target beam/cone attack.
-- **Final Attack Ride: Decade** — forward burst with high-damage finisher hit cone.
+Example: starting in CycloneJoker, inserting Metal changes only the right side -> CycloneMetal. Inserting Heat after that changes only the left side -> HeatMetal.
 
-All three cards now have thin 3D card models instead of flat paper icons. This structure is intended to support later `Kamen Ride`, `Form Ride` and additional `Attack Ride` cards without duplicating item logic.
+The legacy `double_form_changer` item remains registered for old-world save compatibility but is hidden from the creative tab.
 
-### Kuuga remains fully implemented
-- dedicated Kuuga suit geometry
-- Mighty / Dragon / Pegasus / Titan armor colors
-- staged Henshin
+### W weapons
+- **Metal Shaft**: works with any W form whose right-side Memory is Metal. Right-click performs a wide heavy sweep with strong knockback.
+- **Trigger Magnum**: works with any W form whose right-side Memory is Trigger. Right-click fires a focused long-range attack trace with electric projectile FX.
+
+Both use dedicated 3D item models and Memory-aware form checks rather than exact-form hardcoding.
+
+### 3D Gaia Memories
+All six Gaia Memories inherit from one reusable 3D base model and swap their own vanilla-material color set. This keeps proportions consistent and makes later model refinement easy.
+
+## Riders currently implemented
+
+### Kuuga
+- Mighty / Dragon / Pegasus / Titan
+- dedicated staged suit
 - Dragon Rod
 - Titan Sword
-- editable Blockbench source at `assets-src/blockbench/kuuga_suit.bbmodel`
 
-### Other Riders already present
-- W: CycloneJoker / HeatMetal / LunaTrigger
-- Geats: MagnumBoost / Ninja / Zombie
+### Decade
+- dedicated staged suit
+- Ride Booker Sword/Gun modes
+- Attack Ride: Slash
+- Attack Ride: Blast
+- Final Attack Ride: Decade
 
-W and Geats still use the shared Rider shell until their dedicated model passes are implemented.
+### W
+- nine Gaia Memory combinations
+- dedicated split suit
+- Metal Shaft
+- Trigger Magnum
+
+### Geats
+- MagnumBoost / Ninja / Zombie
+- still uses the shared fallback shell until its dedicated model pass
 
 ## Controls
 
 1. Take a Driver from the **Kamen Rider Craft** creative tab.
 2. Right-click a Driver: **Henshin**.
-3. Use a matching form changer where available.
-4. Shift + right-click the Driver while transformed: **Rider Kick**.
-5. Right-click the Driver again: de-henshin.
-6. Kuuga: use Dragon Rod/Titan Sword in the required form.
-7. Decade: right-click Ride Booker for Sword Mode; Shift + right-click for Gun Mode.
-8. Decade: right-click an Attack Ride / Final Attack Ride card while transformed.
+3. Shift + right-click the Driver while transformed: **Rider Kick**.
+4. Right-click the Driver again: de-henshin.
+5. Kuuga: use its form changer and matching form weapons.
+6. Decade: use Ride Booker and Rider Cards while transformed.
+7. W: right-click any Gaia Memory while transformed to replace that side's Memory and immediately resolve the new form.
+8. W: use Metal Shaft with Metal on the right side, or Trigger Magnum with Trigger on the right side.
 
 ## Architecture
 
-- `RiderForm`: gameplay and visual metadata.
+- `RiderForm`: gameplay and visual metadata for every form.
 - `RiderTransformation`: shared transformation/effect service.
 - `RiderStatePayload` + `RiderNetworking`: multiplayer Rider-state synchronization.
 - `RiderClientState`: client presentation cache and Henshin timing.
 - `RiderSuitLayer`: shared undersuit/fallback shell.
 - `KuugaSuitModel` + `KuugaSuitLayer`: dedicated Kuuga armor.
-- `DecadeSuitModel` + `DecadeSuitLayer`: dedicated Decade armor with four render passes.
-- `KuugaWeaponItem`: form-locked Kuuga weapons.
-- `DecadeWeaponItem`: dual-mode Ride Booker.
-- `DecadeCardItem`: reusable Rider Card action foundation.
-- `KamenRiderClient`: wide/slim player model-layer registration.
+- `DecadeSuitModel` + `DecadeSuitLayer`: dedicated Decade armor.
+- `DoubleSuitModel` + `DoubleSuitLayer`: dedicated left/right W armor renderer.
+- `DoubleMemoryItem`: independent Gaia Memory slot replacement and 3x3 form resolution.
+- `DoubleWeaponItem`: Memory-aware Metal Shaft / Trigger Magnum abilities.
+- `KamenRiderClient`: wide/slim model-layer registration.
 
 ## Development
 
@@ -95,13 +120,13 @@ Jar output is written to `build/libs/`.
 
 ## Next milestones
 
-- in-game visual QA for Decade proportions and card rails
-- original Kuuga/Decade texture sheets authored from the Blockbench sources
-- belt-on-waist and Driver activation animation
-- Kamen Ride / Form Ride card-state architecture
-- dedicated W and Geats suit geometry
-- Pegasus Bowgun and more Kuuga techniques
-- original/remade distributable sound effects
+- in-game visual QA for W's center split and eye proportions
+- original texture sheets for Kuuga / Decade / W
+- Memory insertion / Double Driver activation animation
+- Joker-side finisher presentation and Maximum Drive framework
+- dedicated Geats suit geometry and Raise Buckle system
+- Pegasus Bowgun and additional Kuuga techniques
+- more Decade Kamen Ride / Form Ride cards
 - enemy mobs, bosses and unlock/progression loop
 - configurable keybinds
 
