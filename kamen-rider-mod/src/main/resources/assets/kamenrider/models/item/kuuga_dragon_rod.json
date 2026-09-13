@@ -1,0 +1,45 @@
+{
+  "textures": {
+    "rod": "minecraft:block/blue_concrete",
+    "gold": "minecraft:block/gold_block",
+    "grip": "minecraft:block/black_concrete"
+  },
+  "elements": [
+    {
+      "from": [7, 0, 7], "to": [9, 16, 9],
+      "faces": {
+        "north": {"texture": "#rod", "uv": [0,0,2,16]}, "south": {"texture": "#rod", "uv": [0,0,2,16]},
+        "east": {"texture": "#rod", "uv": [0,0,2,16]}, "west": {"texture": "#rod", "uv": [0,0,2,16]},
+        "up": {"texture": "#rod", "uv": [0,0,2,2]}, "down": {"texture": "#rod", "uv": [0,0,2,2]}
+      }
+    },
+    {
+      "from": [6.25, 13.5, 6.25], "to": [9.75, 16, 9.75],
+      "faces": {
+        "north": {"texture": "#gold"}, "south": {"texture": "#gold"}, "east": {"texture": "#gold"},
+        "west": {"texture": "#gold"}, "up": {"texture": "#gold"}, "down": {"texture": "#gold"}
+      }
+    },
+    {
+      "from": [6.45, 0, 6.45], "to": [9.55, 4.3, 9.55],
+      "faces": {
+        "north": {"texture": "#grip"}, "south": {"texture": "#grip"}, "east": {"texture": "#grip"},
+        "west": {"texture": "#grip"}, "up": {"texture": "#grip"}, "down": {"texture": "#grip"}
+      }
+    },
+    {
+      "from": [5.6, 11.8, 7.2], "to": [10.4, 13.2, 8.8],
+      "faces": {
+        "north": {"texture": "#gold"}, "south": {"texture": "#gold"}, "east": {"texture": "#gold"},
+        "west": {"texture": "#gold"}, "up": {"texture": "#gold"}, "down": {"texture": "#gold"}
+      }
+    }
+  ],
+  "display": {
+    "thirdperson_righthand": {"rotation": [0, 90, 35], "translation": [0, 3, 1], "scale": [0.85, 0.85, 0.85]},
+    "thirdperson_lefthand": {"rotation": [0, -90, -35], "translation": [0, 3, 1], "scale": [0.85, 0.85, 0.85]},
+    "firstperson_righthand": {"rotation": [0, 90, 20], "translation": [1, 4, 1], "scale": [0.8, 0.8, 0.8]},
+    "firstperson_lefthand": {"rotation": [0, -90, -20], "translation": [1, 4, 1], "scale": [0.8, 0.8, 0.8]},
+    "gui": {"rotation": [25, 35, 25], "translation": [0, 0, 0], "scale": [0.9, 0.9, 0.9]}
+  }
+}
