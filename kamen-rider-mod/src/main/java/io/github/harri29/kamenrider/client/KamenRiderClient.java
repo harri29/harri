@@ -21,6 +21,12 @@ public final class KamenRiderClient {
     public static final ModelLayerLocation RIDER_SUIT_SLIM = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(KamenRiderMod.MODID, "rider_suit"), "slim"
     );
+    public static final ModelLayerLocation KUUGA_SUIT_WIDE = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(KamenRiderMod.MODID, "kuuga_suit"), "wide"
+    );
+    public static final ModelLayerLocation KUUGA_SUIT_SLIM = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(KamenRiderMod.MODID, "kuuga_suit"), "slim"
+    );
 
     public KamenRiderClient(IEventBus modBus) {
         modBus.addListener(KamenRiderClient::registerLayerDefinitions);
@@ -30,12 +36,14 @@ public final class KamenRiderClient {
     private static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(
                 RIDER_SUIT_WIDE,
-                () -> LayerDefinition.create(PlayerModel.createMesh(new CubeDeformation(0.14F), false), 64, 64)
+                () -> LayerDefinition.create(PlayerModel.createMesh(new CubeDeformation(0.08F), false), 64, 64)
         );
         event.registerLayerDefinition(
                 RIDER_SUIT_SLIM,
-                () -> LayerDefinition.create(PlayerModel.createMesh(new CubeDeformation(0.14F), true), 64, 64)
+                () -> LayerDefinition.create(PlayerModel.createMesh(new CubeDeformation(0.08F), true), 64, 64)
         );
+        event.registerLayerDefinition(KUUGA_SUIT_WIDE, () -> KuugaSuitModel.createBodyLayer(false));
+        event.registerLayerDefinition(KUUGA_SUIT_SLIM, () -> KuugaSuitModel.createBodyLayer(true));
     }
 
     private static void addPlayerLayers(EntityRenderersEvent.AddLayers event) {
@@ -48,6 +56,11 @@ public final class KamenRiderClient {
             renderer.addLayer(new RiderSuitLayer(
                     renderer,
                     event.getContext().bakeLayer(slim ? RIDER_SUIT_SLIM : RIDER_SUIT_WIDE),
+                    slim
+            ));
+            renderer.addLayer(new KuugaSuitLayer(
+                    renderer,
+                    event.getContext().bakeLayer(slim ? KUUGA_SUIT_SLIM : KUUGA_SUIT_WIDE),
                     slim
             ));
         }
