@@ -9,7 +9,7 @@ on:
       - '.github/workflows/kamen-rider-mod-build.yml'
 
 concurrency:
-  group: kamen-rider-mod-${{ github.ref_name }}
+  group: kamen-rider-mod-v2-${{ github.ref_name }}
   cancel-in-progress: true
 
 jobs:
