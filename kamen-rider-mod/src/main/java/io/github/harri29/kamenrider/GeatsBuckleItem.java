@@ -45,6 +45,17 @@ public final class GeatsBuckleItem extends Item {
 
             Buckle upper = upperOf(active);
             Buckle lower = lowerOf(active);
+
+            if (player.isShiftKeyDown()) {
+                boolean equipped = buckle.slot() == Slot.UPPER ? upper == buckle : lower == buckle;
+                if (!equipped) {
+                    player.displayClientMessage(Component.translatable("message.kamenrider.buckle_finisher_inactive"), true);
+                    return InteractionResultHolder.success(stack);
+                }
+                RiderFinisher.buckleFinisher(serverLevel, player, active, buckle, this);
+                return InteractionResultHolder.success(stack);
+            }
+
             if (buckle.slot() == Slot.UPPER) upper = buckle;
             else lower = buckle;
 
