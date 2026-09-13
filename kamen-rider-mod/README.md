@@ -1,34 +1,55 @@
 # Kamen Rider Craft (NeoForge 1.21.1)
 
-Fan-made Minecraft Java mod focused on **henshin -> Rider-specific equipment -> modular form play -> finisher** gameplay.
+Fan-made Minecraft Java mod focused on **henshin -> Rider-specific equipment -> modular form play -> finisher -> Survival progression**.
 
-## v0.9 highlights
+## v1.0 highlights
 
-### First-person Henshin presentation
-v0.9 adds a real client presentation layer instead of relying only on particles around the player.
+### Survival Rider Trials
+Kamen Rider Craft is no longer Creative-only. Four craftable Trial Sigils provide a Survival progression path:
 
-- Driver items move toward the center of view during Henshin.
-- Gaia Memories use an insertion-style hand motion during W form changes.
-- Raise Buckles use a lock-in motion during Geats form changes.
-- Rider-specific hand roll gives Kuuga / Decade / W / Geats slightly different first-person identities.
-- FOV narrows briefly during Henshin/form assembly and returns smoothly.
-- A very small camera roll pulse is used for impact without making normal gameplay feel like permanent camera shake.
+- Kuuga Trial Sigil
+- Decade Trial Sigil
+- W Trial Sigil
+- Geats Trial Sigil
 
-All first-person effects are presentation-only. Damage, cooldowns, transformation state and hit detection remain server authoritative.
+Using a Sigil summons a powered-up Trial Guardian based on a vanilla mob, with increased health, combat buffs, a visible custom name and persistent trial tags. Defeating the Guardian personally unlocks that Rider series for the player and grants its Driver plus starter equipment.
 
-### Cinematic finisher cues
-A new `RiderPresentationPayload` is sent from server to tracking clients when an important finisher happens. The local first-person view uses it for a short hand recoil + FOV impact pulse.
+Current rewards:
 
-Current cinematic cues cover:
+- Kuuga: Kuuga Arcle + Kuuga Form Changer + Dragon Rod
+- Decade: Decade Driver + Ride Booker + Attack Ride: Slash
+- W: Double Driver + Cyclone Memory + Joker Memory
+- Geats: Desire Driver + Magnum Raise Buckle + Boost Raise Buckle
 
+Creative inventory is still available for testing and building, but Survival now has a real acquisition loop.
+
+### Dynamic waist equipment
+Dedicated Rider suits already include their belt body. v1.0 adds a separate dynamic waist-module render layer so the equipment visible on the belt changes with gameplay state instead of remaining a static decoration.
+
+- Kuuga: Arcle core emphasis
+- Decade: active Driver plate/core
+- W: left/right Gaia Memory modules reflect the current 3x3 Memory combination
+- Geats: upper/lower Raise Buckle modules reflect the current two-slot loadout
+- Belt core renders full-bright for a stronger Driver read at normal gameplay distance
+
+### Four-stage first-person Henshin
+The first-person Henshin presentation is extended to roughly 1.65 seconds and split into four phases:
+
+1. prepare the hand/device
+2. present or insert the Driver/Memory/Buckle
+3. lock the equipment into place
+4. completion flash / settle
+
+Driver items, Gaia Memories and Raise Buckles now use different staged transforms. Henshin FOV and camera roll also follow the phase timing instead of one continuous sine motion.
+
+### Existing cinematic finishers retained
 - shared Rider Kick
 - Kuuga Dragon Rod / Titan Sword finishers
-- W Maximum Drive
-- Geats Raise Buckle finishers
+- W six-Memory Maximum Drive framework
+- Geats Magnum / Ninja / Boost / Zombie Buckle finishers
 - Decade Final Attack Ride
 
-### Client/server separation
-`RiderStatePayload` still owns transformation/form rendering state. `RiderPresentationPayload` is intentionally separate and carries only short visual cue IDs. This makes it possible to expand future Driver insertion, weapon recoil and final-form camera effects without changing gameplay authority.
+All damage, cooldowns and transformation state remain server authoritative. First-person hand transforms and camera/FOV effects are presentation-only.
 
 ## Riders currently implemented
 
@@ -37,43 +58,52 @@ Current cinematic cues cover:
 - dedicated staged suit
 - Dragon Rod + normal technique + Shift finisher
 - Titan Sword + normal technique + Shift finisher
-- first-person Driver/finisher presentation
+- dynamic Arcle waist core
+- Survival Trial path
 
 ### Decade
 - dedicated staged suit
 - Ride Booker Sword/Gun modes
 - Attack Ride: Slash
 - Attack Ride: Blast
-- Final Attack Ride: Decade with cinematic cue
+- Final Attack Ride: Decade
+- dynamic waist Driver plate/core
+- Survival Trial path
 
 ### W
 - full 3x3 Gaia Memory matrix (9 forms)
 - dedicated vertical split suit
+- dynamic left/right Gaia Memory waist modules
 - Metal Shaft
 - Trigger Magnum
 - six Gaia Memory Maximum Drives
-- Gaia Memory insertion-style first-person motion
+- Survival Trial path
 
 ### Geats
 - MagnumBoost / MagnumZombie / NinjaBoost / NinjaZombie
 - dedicated modular fox suit
+- dynamic upper/lower Raise Buckle waist modules
 - Magnum Shooter
 - Ninja Dualer
 - Zombie Breaker
 - four equipped-Buckle finishers
-- Raise Buckle lock-in first-person motion
+- Survival Trial path
+
+## Survival progression
+
+Craft a Trial Sigil with vanilla materials, use it in a safe combat area, defeat the summoned Trial Guardian and receive that Rider's Driver + starter kit. The clear is stored as a persistent player scoreboard tag (`kamenrider.unlock.<series>`), giving later progression systems a stable unlock foundation.
 
 ## Controls
 
-1. Take a Driver from the **Kamen Rider Craft** creative tab.
-2. Right-click a Driver: **Henshin**.
-3. Shift + right-click the Driver while transformed: **Rider Kick**.
-4. Right-click the same Driver again: de-henshin.
-5. Kuuga: right-click its matching weapon for the normal technique; Shift + right-click the weapon for the finisher.
-6. Decade: use Ride Booker and Rider Cards; Final Attack Ride is its dedicated finisher path.
-7. W: right-click a Gaia Memory to replace only that side's Memory; Shift + right-click an already inserted Memory for Maximum Drive.
-8. Geats: right-click a Raise Buckle to replace only its upper/lower slot; Shift + right-click an equipped Buckle for its finisher.
-9. Geats weapons remain Buckle-gated: Magnum Shooter needs Magnum, Ninja Dualer needs Ninja, Zombie Breaker needs Zombie.
+1. Right-click a Driver: **Henshin**.
+2. Shift + right-click the Driver while transformed: **Rider Kick**.
+3. Right-click the same Driver again: de-henshin.
+4. Kuuga: right-click the matching weapon for its normal technique; Shift + right-click for the weapon finisher.
+5. Decade: use Ride Booker and Rider Cards; Final Attack Ride is its dedicated finisher path.
+6. W: right-click a Gaia Memory to replace only that side; Shift + right-click an already inserted Memory for Maximum Drive.
+7. Geats: right-click a Raise Buckle to replace only its upper/lower slot; Shift + right-click an equipped Buckle for its finisher.
+8. Geats weapons remain Buckle-gated: Magnum Shooter needs Magnum, Ninja Dualer needs Ninja, Zombie Breaker needs Zombie.
+9. In Survival, craft and use a Rider Trial Sigil to earn the corresponding Driver and starter gear.
 
 ## Architecture
 
@@ -82,21 +112,14 @@ Current cinematic cues cover:
 - `RiderFinisher`: shared finisher targeting, damage, movement, particles, sound and cooldown behavior.
 - `RiderStatePayload`: multiplayer transformation/form snapshot.
 - `RiderPresentationPayload`: short server -> client cinematic cue.
-- `RiderNetworking`: registration + Rider state/presentation sync.
-- `RiderClientState`: client form, Henshin timing and presentation timing cache.
-- `RiderFirstPersonPresentation`: first-person hand transforms, FOV pulse and subtle camera roll.
+- `RiderNetworking`: state/presentation synchronization.
+- `RiderClientState`: form, Henshin timing and presentation timing cache.
+- `RiderFirstPersonPresentation`: staged first-person hand transforms, FOV pulse and camera roll.
 - `RiderSuitLayer`: shared undersuit/fallback layer.
-- `KuugaSuitModel` + `KuugaSuitLayer`: Kuuga armor.
-- `KuugaWeaponItem`: form-locked normal techniques + Shift finishers.
-- `DecadeSuitModel` + `DecadeSuitLayer`: Decade armor.
-- `DecadeWeaponItem` + `DecadeCardItem`: Ride Booker and Rider Card actions.
-- `DoubleSuitModel` + `DoubleSuitLayer`: W split armor.
-- `DoubleMemoryItem`: independent Gaia Memory side replacement + Maximum Drive activation.
-- `DoubleWeaponItem`: Memory-aware Metal Shaft / Trigger Magnum abilities.
-- `GeatsSuitModel` + `GeatsSuitLayer`: modular Geats fox armor.
-- `GeatsBuckleItem`: upper/lower Raise Buckle replacement + equipped-Buckle finisher activation.
-- `GeatsWeaponItem`: Buckle-aware weapon abilities.
-- `KamenRiderClient`: wide/slim suit registration + first-person event registration.
+- `RiderWaistModel` + `RiderWaistLayer`: dynamic Driver/Memory/Buckle waist equipment.
+- `RiderTrialItem`: craftable Survival challenge summoner.
+- `RiderTrialSystem`: trial completion detection and Driver/starter-kit rewards.
+- Rider-specific suit, equipment and weapon classes remain separated by series.
 
 ## Development
 
@@ -114,18 +137,6 @@ gradle build
 ```
 
 Jar output is written to `build/libs/`.
-
-## Next milestones
-
-- in-game QA for first-person hand positions at different FOV settings
-- true Driver-on-waist / Memory / Buckle insertion animation using dedicated rendered equipment transforms
-- original texture sheets for all four dedicated Riders
-- custom distributable sound set for Henshin and finishers
-- more Decade Kamen Ride / Form Ride cards
-- Pegasus Bowgun and additional Kuuga equipment
-- enemy mobs and bosses designed around finisher gameplay
-- unlock/progression loop instead of creative-only equipment access
-- configurable keybinds and accessibility options, including camera-effect intensity
 
 ## Assets and source references
 
