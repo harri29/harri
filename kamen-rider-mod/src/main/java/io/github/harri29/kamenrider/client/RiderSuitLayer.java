@@ -10,9 +10,9 @@ import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 
 /**
- * Copyright-safe placeholder suit renderer.
- * It reuses the player's own skin as a tinted outer shell and can later be
- * replaced by original Blockbench Rider geometry without changing networking.
+ * Shared undersuit/fallback renderer.
+ * Kuuga uses this as a dark undersuit beneath its dedicated armor geometry;
+ * other Riders continue using the colored shell until their own models land.
  */
 public final class RiderSuitLayer extends RenderLayer<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> {
     private final PlayerModel<AbstractClientPlayer> suitModel;
@@ -49,8 +49,10 @@ public final class RiderSuitLayer extends RenderLayer<AbstractClientPlayer, Play
         suitModel.setupAnim(player, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 
         float progress = RiderClientState.henshinProgress(player.getId());
-        float pulse = 1.0F + (1.0F - progress) * 0.09F;
-        int argb = 0xFF000000 | form.suitColor();
+        float pulseAmount = form.seriesId().equals("kuuga") ? 0.035F : 0.09F;
+        float pulse = 1.0F + (1.0F - progress) * pulseAmount;
+        int suitRgb = form.seriesId().equals("kuuga") ? 0x17191D : form.suitColor();
+        int argb = 0xFF000000 | suitRgb;
 
         poseStack.pushPose();
         poseStack.scale(pulse, pulse, pulse);
