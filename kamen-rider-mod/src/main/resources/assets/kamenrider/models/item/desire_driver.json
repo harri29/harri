@@ -1,4 +1,22 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": { "layer0": "minecraft:item/quartz" }
+  "gui_light": "front",
+  "textures": {
+    "belt": "minecraft:block/black_concrete",
+    "frame": "minecraft:block/white_concrete",
+    "dark": "minecraft:block/gray_concrete",
+    "accent": "minecraft:block/orange_concrete"
+  },
+  "display": {
+    "gui": { "rotation": [25, 35, 0], "translation": [0, 0.5, 0], "scale": [0.85, 0.85, 0.85] },
+    "ground": { "translation": [0, 3, 0], "scale": [0.45, 0.45, 0.45] },
+    "fixed": { "rotation": [0, 180, 0], "scale": [0.75, 0.75, 0.75] },
+    "firstperson_righthand": { "rotation": [0, -90, 25], "translation": [1.2, 3.5, 1.0], "scale": [0.75, 0.75, 0.75] },
+    "thirdperson_righthand": { "rotation": [0, 90, 35], "translation": [0, 2.5, 1.0], "scale": [0.65, 0.65, 0.65] }
+  },
+  "elements": [
+    { "from": [0.5, 6.7, 7.2], "to": [15.5, 9.3, 8.8], "faces": { "north": {"texture":"#belt"}, "south": {"texture":"#belt"}, "east": {"texture":"#belt"}, "west": {"texture":"#belt"}, "up": {"texture":"#belt"}, "down": {"texture":"#belt"} } },
+    { "from": [3.45, 5.6, 6.2], "to": [12.55, 10.4, 9.8], "faces": { "north": {"texture":"#frame"}, "south": {"texture":"#frame"}, "east": {"texture":"#frame"}, "west": {"texture":"#frame"}, "up": {"texture":"#frame"}, "down": {"texture":"#frame"} } },
+    { "from": [4.4, 6.35, 5.65], "to": [11.6, 9.65, 6.3], "faces": { "north": {"texture":"#dark"}, "south": {"texture":"#dark"}, "east": {"texture":"#dark"}, "west": {"texture":"#dark"}, "up": {"texture":"#dark"}, "down": {"texture":"#dark"} } },
+    { "from": [6.0, 6.85, 5.15], "to": [10.0, 9.15, 5.7], "faces": { "north": {"texture":"#accent"}, "south": {"texture":"#accent"}, "east": {"texture":"#accent"}, "west": {"texture":"#accent"}, "up": {"texture":"#accent"}, "down": {"texture":"#accent"} } }
+  ]
 }
