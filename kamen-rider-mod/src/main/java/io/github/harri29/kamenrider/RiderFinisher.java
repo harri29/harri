@@ -1,5 +1,6 @@
 package io.github.harri29.kamenrider;
 
+import io.github.harri29.kamenrider.network.RiderNetworking;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -45,6 +46,7 @@ public final class RiderFinisher {
         };
 
         player.getCooldowns().addCooldown(sourceItem, MAXIMUM_DRIVE_COOLDOWN);
+        RiderNetworking.presentation(player, "maximum_drive");
         player.displayClientMessage(
                 Component.translatable(
                         "message.kamenrider.maximum_drive",
@@ -76,6 +78,7 @@ public final class RiderFinisher {
         };
 
         player.getCooldowns().addCooldown(sourceItem, BUCKLE_FINISHER_COOLDOWN);
+        RiderNetworking.presentation(player, "buckle_finisher");
         player.displayClientMessage(
                 Component.translatable(
                         "message.kamenrider.buckle_finisher",
