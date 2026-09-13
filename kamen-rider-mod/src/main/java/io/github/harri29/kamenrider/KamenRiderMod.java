@@ -24,50 +24,22 @@ public final class KamenRiderMod {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
     public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
-    public static final DeferredItem<DriverItem> KUUGA_ARCLE = ITEMS.register("kuuga_arcle",
-            () -> new DriverItem(RiderForm.KUUGA_MIGHTY, driverProperties()));
-    public static final DeferredItem<DriverItem> DECADE_DRIVER = ITEMS.register("decade_driver",
-            () -> new DriverItem(RiderForm.DECADE, driverProperties()));
-    public static final DeferredItem<DriverItem> DOUBLE_DRIVER = ITEMS.register("double_driver",
-            () -> new DriverItem(RiderForm.DOUBLE_CYCLONE_JOKER, driverProperties()));
-    public static final DeferredItem<DriverItem> DESIRE_DRIVER = ITEMS.register("desire_driver",
-            () -> new DriverItem(RiderForm.GEATS_MAGNUM_BOOST, driverProperties()));
+    public static final DeferredItem<DriverItem> KUUGA_ARCLE = ITEMS.register("kuuga_arcle", () -> new DriverItem(RiderForm.KUUGA_MIGHTY, driverProperties()));
+    public static final DeferredItem<DriverItem> DECADE_DRIVER = ITEMS.register("decade_driver", () -> new DriverItem(RiderForm.DECADE, driverProperties()));
+    public static final DeferredItem<DriverItem> DOUBLE_DRIVER = ITEMS.register("double_driver", () -> new DriverItem(RiderForm.DOUBLE_CYCLONE_JOKER, driverProperties()));
+    public static final DeferredItem<DriverItem> DESIRE_DRIVER = ITEMS.register("desire_driver", () -> new DriverItem(RiderForm.GEATS_MAGNUM_BOOST, driverProperties()));
 
     public static final DeferredItem<FormChangeItem> KUUGA_FORM_CHANGER = ITEMS.register("kuuga_form_changer",
-            () -> new FormChangeItem("kuuga", List.of(
-                    RiderForm.KUUGA_MIGHTY,
-                    RiderForm.KUUGA_DRAGON,
-                    RiderForm.KUUGA_PEGASUS,
-                    RiderForm.KUUGA_TITAN
-            ), formItemProperties()));
-
+            () -> new FormChangeItem("kuuga", List.of(RiderForm.KUUGA_MIGHTY, RiderForm.KUUGA_DRAGON, RiderForm.KUUGA_PEGASUS, RiderForm.KUUGA_TITAN), formItemProperties()));
     public static final DeferredItem<KuugaWeaponItem> KUUGA_DRAGON_ROD = ITEMS.register("kuuga_dragon_rod",
-            () -> new KuugaWeaponItem(
-                    RiderForm.KUUGA_DRAGON,
-                    KuugaWeaponItem.Style.DRAGON_ROD,
-                    new Item.Properties()
-                            .stacksTo(1)
-                            .rarity(Rarity.EPIC)
-                            .attributes(SwordItem.createAttributes(Tiers.DIAMOND, 4.0F, -2.2F))
-            ));
-
+            () -> new KuugaWeaponItem(RiderForm.KUUGA_DRAGON, KuugaWeaponItem.Style.DRAGON_ROD,
+                    new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).attributes(SwordItem.createAttributes(Tiers.DIAMOND, 4.0F, -2.2F))));
     public static final DeferredItem<KuugaWeaponItem> KUUGA_TITAN_SWORD = ITEMS.register("kuuga_titan_sword",
-            () -> new KuugaWeaponItem(
-                    RiderForm.KUUGA_TITAN,
-                    KuugaWeaponItem.Style.TITAN_SWORD,
-                    new Item.Properties()
-                            .stacksTo(1)
-                            .rarity(Rarity.EPIC)
-                            .attributes(SwordItem.createAttributes(Tiers.DIAMOND, 7.0F, -2.8F))
-            ));
+            () -> new KuugaWeaponItem(RiderForm.KUUGA_TITAN, KuugaWeaponItem.Style.TITAN_SWORD,
+                    new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).attributes(SwordItem.createAttributes(Tiers.DIAMOND, 7.0F, -2.8F))));
 
     public static final DeferredItem<DecadeWeaponItem> RIDE_BOOKER = ITEMS.register("ride_booker",
-            () -> new DecadeWeaponItem(
-                    new Item.Properties()
-                            .stacksTo(1)
-                            .rarity(Rarity.EPIC)
-                            .attributes(SwordItem.createAttributes(Tiers.DIAMOND, 5.0F, -2.4F))
-            ));
+            () -> new DecadeWeaponItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).attributes(SwordItem.createAttributes(Tiers.DIAMOND, 5.0F, -2.4F))));
     public static final DeferredItem<DecadeCardItem> ATTACK_RIDE_SLASH = ITEMS.register("attack_ride_slash",
             () -> new DecadeCardItem(DecadeCardItem.CardAction.ATTACK_RIDE_SLASH, cardProperties()));
     public static final DeferredItem<DecadeCardItem> ATTACK_RIDE_BLAST = ITEMS.register("attack_ride_blast",
@@ -75,47 +47,43 @@ public final class KamenRiderMod {
     public static final DeferredItem<DecadeCardItem> FINAL_ATTACK_RIDE = ITEMS.register("final_attack_ride_decade",
             () -> new DecadeCardItem(DecadeCardItem.CardAction.FINAL_ATTACK_RIDE, cardProperties()));
 
-    public static final DeferredItem<DoubleMemoryItem> CYCLONE_MEMORY = ITEMS.register("cyclone_memory",
-            () -> new DoubleMemoryItem(DoubleMemoryItem.Memory.CYCLONE, memoryProperties()));
-    public static final DeferredItem<DoubleMemoryItem> HEAT_MEMORY = ITEMS.register("heat_memory",
-            () -> new DoubleMemoryItem(DoubleMemoryItem.Memory.HEAT, memoryProperties()));
-    public static final DeferredItem<DoubleMemoryItem> LUNA_MEMORY = ITEMS.register("luna_memory",
-            () -> new DoubleMemoryItem(DoubleMemoryItem.Memory.LUNA, memoryProperties()));
-    public static final DeferredItem<DoubleMemoryItem> JOKER_MEMORY = ITEMS.register("joker_memory",
-            () -> new DoubleMemoryItem(DoubleMemoryItem.Memory.JOKER, memoryProperties()));
-    public static final DeferredItem<DoubleMemoryItem> METAL_MEMORY = ITEMS.register("metal_memory",
-            () -> new DoubleMemoryItem(DoubleMemoryItem.Memory.METAL, memoryProperties()));
-    public static final DeferredItem<DoubleMemoryItem> TRIGGER_MEMORY = ITEMS.register("trigger_memory",
-            () -> new DoubleMemoryItem(DoubleMemoryItem.Memory.TRIGGER, memoryProperties()));
-
+    public static final DeferredItem<DoubleMemoryItem> CYCLONE_MEMORY = ITEMS.register("cyclone_memory", () -> new DoubleMemoryItem(DoubleMemoryItem.Memory.CYCLONE, memoryProperties()));
+    public static final DeferredItem<DoubleMemoryItem> HEAT_MEMORY = ITEMS.register("heat_memory", () -> new DoubleMemoryItem(DoubleMemoryItem.Memory.HEAT, memoryProperties()));
+    public static final DeferredItem<DoubleMemoryItem> LUNA_MEMORY = ITEMS.register("luna_memory", () -> new DoubleMemoryItem(DoubleMemoryItem.Memory.LUNA, memoryProperties()));
+    public static final DeferredItem<DoubleMemoryItem> JOKER_MEMORY = ITEMS.register("joker_memory", () -> new DoubleMemoryItem(DoubleMemoryItem.Memory.JOKER, memoryProperties()));
+    public static final DeferredItem<DoubleMemoryItem> METAL_MEMORY = ITEMS.register("metal_memory", () -> new DoubleMemoryItem(DoubleMemoryItem.Memory.METAL, memoryProperties()));
+    public static final DeferredItem<DoubleMemoryItem> TRIGGER_MEMORY = ITEMS.register("trigger_memory", () -> new DoubleMemoryItem(DoubleMemoryItem.Memory.TRIGGER, memoryProperties()));
     public static final DeferredItem<DoubleWeaponItem> METAL_SHAFT = ITEMS.register("metal_shaft",
-            () -> new DoubleWeaponItem(
-                    DoubleWeaponItem.Style.METAL_SHAFT,
-                    new Item.Properties()
-                            .stacksTo(1)
-                            .rarity(Rarity.EPIC)
-                            .attributes(SwordItem.createAttributes(Tiers.DIAMOND, 4.5F, -2.2F))
-            ));
+            () -> new DoubleWeaponItem(DoubleWeaponItem.Style.METAL_SHAFT,
+                    new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).attributes(SwordItem.createAttributes(Tiers.DIAMOND, 4.5F, -2.2F))));
     public static final DeferredItem<DoubleWeaponItem> TRIGGER_MAGNUM = ITEMS.register("trigger_magnum",
-            () -> new DoubleWeaponItem(
-                    DoubleWeaponItem.Style.TRIGGER_MAGNUM,
-                    new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)
-            ));
+            () -> new DoubleWeaponItem(DoubleWeaponItem.Style.TRIGGER_MAGNUM, new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
 
-    // Kept registered for save compatibility with v0.2-v0.5, but hidden from the creative tab.
+    // Legacy W form-changer remains registered so older saves continue loading.
     public static final DeferredItem<FormChangeItem> DOUBLE_FORM_CHANGER = ITEMS.register("double_form_changer",
-            () -> new FormChangeItem("double", List.of(
-                    RiderForm.DOUBLE_CYCLONE_JOKER,
-                    RiderForm.DOUBLE_HEAT_METAL,
-                    RiderForm.DOUBLE_LUNA_TRIGGER
-            ), formItemProperties()));
+            () -> new FormChangeItem("double", List.of(RiderForm.DOUBLE_CYCLONE_JOKER, RiderForm.DOUBLE_HEAT_METAL, RiderForm.DOUBLE_LUNA_TRIGGER), formItemProperties()));
 
+    public static final DeferredItem<GeatsBuckleItem> MAGNUM_BUCKLE = ITEMS.register("magnum_buckle",
+            () -> new GeatsBuckleItem(GeatsBuckleItem.Buckle.MAGNUM, buckleProperties()));
+    public static final DeferredItem<GeatsBuckleItem> NINJA_BUCKLE = ITEMS.register("ninja_buckle",
+            () -> new GeatsBuckleItem(GeatsBuckleItem.Buckle.NINJA, buckleProperties()));
+    public static final DeferredItem<GeatsBuckleItem> BOOST_BUCKLE = ITEMS.register("boost_buckle",
+            () -> new GeatsBuckleItem(GeatsBuckleItem.Buckle.BOOST, buckleProperties()));
+    public static final DeferredItem<GeatsBuckleItem> ZOMBIE_BUCKLE = ITEMS.register("zombie_buckle",
+            () -> new GeatsBuckleItem(GeatsBuckleItem.Buckle.ZOMBIE, buckleProperties()));
+
+    public static final DeferredItem<GeatsWeaponItem> MAGNUM_SHOOTER = ITEMS.register("magnum_shooter",
+            () -> new GeatsWeaponItem(GeatsWeaponItem.Style.MAGNUM_SHOOTER, new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+    public static final DeferredItem<GeatsWeaponItem> NINJA_DUALER = ITEMS.register("ninja_dualer",
+            () -> new GeatsWeaponItem(GeatsWeaponItem.Style.NINJA_DUALER,
+                    new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).attributes(SwordItem.createAttributes(Tiers.DIAMOND, 4.0F, -2.0F))));
+    public static final DeferredItem<GeatsWeaponItem> ZOMBIE_BREAKER = ITEMS.register("zombie_breaker",
+            () -> new GeatsWeaponItem(GeatsWeaponItem.Style.ZOMBIE_BREAKER,
+                    new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).attributes(SwordItem.createAttributes(Tiers.DIAMOND, 7.5F, -2.9F))));
+
+    // Legacy Geats form-changer remains registered for save compatibility, but is hidden from the creative tab.
     public static final DeferredItem<FormChangeItem> GEATS_FORM_CHANGER = ITEMS.register("geats_form_changer",
-            () -> new FormChangeItem("geats", List.of(
-                    RiderForm.GEATS_MAGNUM_BOOST,
-                    RiderForm.GEATS_NINJA,
-                    RiderForm.GEATS_ZOMBIE
-            ), formItemProperties()));
+            () -> new FormChangeItem("geats", List.of(RiderForm.GEATS_MAGNUM_BOOST, RiderForm.GEATS_NINJA, RiderForm.GEATS_ZOMBIE), formItemProperties()));
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> RIDER_TAB = TABS.register("rider_tab",
             () -> CreativeModeTab.builder()
@@ -144,7 +112,13 @@ public final class KamenRiderMod {
                         output.accept(TRIGGER_MAGNUM.get());
 
                         output.accept(DESIRE_DRIVER.get());
-                        output.accept(GEATS_FORM_CHANGER.get());
+                        output.accept(MAGNUM_BUCKLE.get());
+                        output.accept(BOOST_BUCKLE.get());
+                        output.accept(NINJA_BUCKLE.get());
+                        output.accept(ZOMBIE_BUCKLE.get());
+                        output.accept(MAGNUM_SHOOTER.get());
+                        output.accept(NINJA_DUALER.get());
+                        output.accept(ZOMBIE_BREAKER.get());
                     })
                     .build());
 
@@ -155,19 +129,9 @@ public final class KamenRiderMod {
         NeoForge.EVENT_BUS.addListener(RiderNetworking::onStartTracking);
     }
 
-    private static Item.Properties driverProperties() {
-        return new Item.Properties().stacksTo(1).rarity(Rarity.EPIC);
-    }
-
-    private static Item.Properties formItemProperties() {
-        return new Item.Properties().stacksTo(1).rarity(Rarity.RARE);
-    }
-
-    private static Item.Properties cardProperties() {
-        return new Item.Properties().stacksTo(1).rarity(Rarity.EPIC);
-    }
-
-    private static Item.Properties memoryProperties() {
-        return new Item.Properties().stacksTo(1).rarity(Rarity.RARE);
-    }
+    private static Item.Properties driverProperties() { return new Item.Properties().stacksTo(1).rarity(Rarity.EPIC); }
+    private static Item.Properties formItemProperties() { return new Item.Properties().stacksTo(1).rarity(Rarity.RARE); }
+    private static Item.Properties cardProperties() { return new Item.Properties().stacksTo(1).rarity(Rarity.EPIC); }
+    private static Item.Properties memoryProperties() { return new Item.Properties().stacksTo(1).rarity(Rarity.RARE); }
+    private static Item.Properties buckleProperties() { return new Item.Properties().stacksTo(1).rarity(Rarity.RARE); }
 }
