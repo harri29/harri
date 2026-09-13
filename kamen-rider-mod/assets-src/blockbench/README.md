@@ -33,7 +33,19 @@ The runtime suit is deliberately separated into left/right geometry rather than 
 - Accent: silver center seam and Double Driver frame.
 - Core: red compound-eye pass rendered full-bright.
 
-The six Gaia Memories can be changed independently, producing all nine currently implemented combinations. Keep left/right armor pieces on their matching vanilla player bones when refining the model.
+The six Gaia Memories can be changed independently, producing all nine currently implemented combinations.
+
+## Geats
+
+`geats_suit.bbmodel` mirrors the modular pipeline in `client/GeatsSuitModel.java`.
+
+The armor is split into four presentation passes:
+- Base: white fox helmet/chest shell, ears and Desire Driver frame.
+- Upper: Magnum or Ninja Raise Buckle armor module.
+- Lower: Boost or Zombie Raise Buckle armor module.
+- Core: eye visor and Driver core rendered full-bright.
+
+The Henshin timeline assembles the fox shell first, locks in the upper module, then the lower module, and finishes with the illuminated visor/core. Keep upper/lower armor grouped separately when refining the model so Buckle recoloring remains independent.
 
 ## Asset policy
 
