@@ -48,7 +48,9 @@ public final class RiderSuitLayer extends RenderLayer<AbstractClientPlayer, Play
         suitModel.prepareMobModel(player, limbSwing, limbSwingAmount, partialTick);
         suitModel.setupAnim(player, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 
-        boolean dedicatedModel = form.seriesId().equals("kuuga") || form.seriesId().equals("decade");
+        boolean dedicatedModel = form.seriesId().equals("kuuga")
+                || form.seriesId().equals("decade")
+                || form.seriesId().equals("double");
         float progress = RiderClientState.henshinProgress(player.getId());
         float pulseAmount = dedicatedModel ? 0.035F : 0.09F;
         float pulse = 1.0F + (1.0F - progress) * pulseAmount;
