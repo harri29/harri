@@ -16,8 +16,14 @@ public enum RiderForm {
     DECADE("decade", "decade", "rider.kamenrider.decade", 1, 2, 1, 0, 28.0F, 1.12F, 0xE91E63),
 
     DOUBLE_CYCLONE_JOKER("double_cyclone_joker", "double", "rider.kamenrider.double_cyclone_joker", 2, 1, 0, 1, 22.0F, 1.24F, 0x43A047),
-    DOUBLE_HEAT_METAL("double_heat_metal", "double", "rider.kamenrider.double_heat_metal", 0, 3, 1, 0, 29.0F, 1.16F, 0xEF6C00),
-    DOUBLE_LUNA_TRIGGER("double_luna_trigger", "double", "rider.kamenrider.double_luna_trigger", 2, 1, 0, 2, 23.0F, 1.32F, 0xFBC02D),
+    DOUBLE_CYCLONE_METAL("double_cyclone_metal", "double", "rider.kamenrider.double_cyclone_metal", 2, 2, 1, 1, 25.0F, 1.20F, 0x66A66A),
+    DOUBLE_CYCLONE_TRIGGER("double_cyclone_trigger", "double", "rider.kamenrider.double_cyclone_trigger", 3, 1, 0, 1, 23.0F, 1.30F, 0x2F8B9A),
+    DOUBLE_HEAT_JOKER("double_heat_joker", "double", "rider.kamenrider.double_heat_joker", 1, 2, 0, 1, 25.0F, 1.16F, 0xC23D35),
+    DOUBLE_HEAT_METAL("double_heat_metal", "double", "rider.kamenrider.double_heat_metal", 0, 3, 1, 0, 29.0F, 1.12F, 0xD06B45),
+    DOUBLE_HEAT_TRIGGER("double_heat_trigger", "double", "rider.kamenrider.double_heat_trigger", 1, 2, 0, 0, 27.0F, 1.22F, 0xB44961),
+    DOUBLE_LUNA_JOKER("double_luna_joker", "double", "rider.kamenrider.double_luna_joker", 2, 1, 0, 2, 23.0F, 1.28F, 0xC6A733),
+    DOUBLE_LUNA_METAL("double_luna_metal", "double", "rider.kamenrider.double_luna_metal", 1, 2, 1, 1, 27.0F, 1.24F, 0xC8BD72),
+    DOUBLE_LUNA_TRIGGER("double_luna_trigger", "double", "rider.kamenrider.double_luna_trigger", 2, 1, 0, 2, 24.0F, 1.34F, 0xB5A332),
 
     GEATS_MAGNUM_BOOST("geats_magnum_boost", "geats", "rider.kamenrider.geats_magnum_boost", 2, 2, 0, 1, 26.0F, 1.36F, 0xF44336),
     GEATS_NINJA("geats_ninja", "geats", "rider.kamenrider.geats_ninja", 3, 1, 0, 2, 24.0F, 1.44F, 0x00897B),
