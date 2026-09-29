@@ -38,3 +38,32 @@ Công cụ `enhance.py` cũ vẫn có thể sử dụng để cắt lại và l�
 **Giới hạn:** AI có thể tạo chi tiết không tồn tại trong khung hình gốc và gây nhấp nháy khung hình; chất lượng thực tế tùy phim gốc. GitHub Actions runner tiêu chuẩn không cung cấp GPU phù hợp để chạy khối lượng này, nên xử lý thực tế trên Windows có Vulkan GPU. Mã nguồn đã được kiểm tra cú pháp và logic xử lý trên video thử tổng hợp nhưng không phải kết quả AI thật khi chưa chạy với model/GPU.
 
 **Nguồn tư liệu và quyền tác giả:** Kho công khai chỉ chứa mã xử lý và mốc cắt; không tải video của Báo Quân đội nhân dân lên kho khi chưa được cho phép. Việc crop logo không thay đổi quyền sử dụng; giữ ghi nguồn và xin phép đơn vị sở hữu trước khi công bố.
+
+
+## Cắt 3 video mới theo kịch bản người dẫn chuyện 6:50
+
+Công cụ mới: `cut_three_sources.py` + `DANH_MUC_BA_VIDEO.csv`.
+
+Đã chọn **19 đoạn / khoảng 93 giây** từ 3 nguồn do người dùng cung cấp; dùng cho các cảnh: lịch sử (C2), đào tạo (C5), nghiên cứu khoa học (C7), thành tựu (C9). Không đưa video có bản quyền vào kho GitHub công khai.
+
+Ví dụ trên Windows (cài Python và FFmpeg):
+
+```powershell
+python cut_three_sources.py --history "D:\Videos\Ngay-truyen-thong.mp4" --award "D:\Videos\Don-nhan-Anh-hung.mp4" --conference "D:\Videos\Hoi-thao-2024.mp4" --out ".\OUTPUT_THREE_SOURCES"
+```
+
+Chạy lại và chỉ xử lý file còn thiếu: thêm `--resume`.
+
+**Tùy chọn nâng nét AI**: cài Real-ESRGAN ncnn Vulkan cùng mô hình `realesrgan-x4plus`, yêu cầu GPU có Vulkan và chạy:
+
+```powershell
+python cut_three_sources.py --history "D:\Videos\Ngay-truyen-thong.mp4" --award "D:\Videos\Don-nhan-Anh-hung.mp4" --conference "D:\Videos\Hoi-thao-2024.mp4" --mode ai --ncnn "D:\AI\realesrgan-ncnn-vulkan.exe" --out ".\OUTPUT_AI_THREE_SOURCES"
+```
+
+Khi ở chế độ AI, cảnh C2 về lịch sử được xử lý theo chế độ bảo toàn nội dung (FFmpeg không AI), cảnh hiện đại C5/C7/C9 mới dùng AI; vì AI có thể tạo chi tiết giả nên phải kiểm tra từng clip trước khi phát hành. Cả hai chế độ tắt tiếng nguồn để ghép lời dẫn riêng.
+
+Các clip mới được nhóm theo phân cảnh. **Cảnh C7 có nhiều clip dự phòng hơn thời lượng thực tế trong kịch bản**, người dựng chọn những góc phù hợp nhất, không buộc phát tất cả. Nguồn "Hội thảo khoa học năm 2024" ở Hà Nội không tự động chứng minh đây là hội thảo của riêng Trường Sĩ quan Chính trị; tránh caption sai. Clip Ngày truyền thống có chữ đỏ "14-1-1976" gốc nhưng minh họa sử dụng **hình ảnh nhà trường ngày nay**, không phải bản ghi hình thành lập năm 1976.
+
+Các clip thực tế đã hoàn thành trong ChatGPT lần này bằng FFmpeg CPU (giảm nhiễu + nét nhẹ + xử lý góc logo), **chưa được nâng cấp bằng Real-ESRGAN AI** vì môi trường xử lý chưa có Vulkan GPU phù hợp. Bộ mã nguồn và tham số chạy AI được chuẩn bị để có thể thực hiện trên GPU sau này.
+
+Luôn giữ nguồn, xin phép chủ sở hữu trước khi công bố lại; che logo không thay đổi bản quyền.
