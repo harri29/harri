@@ -1,27 +1,40 @@
-# TSQC video quality pipeline
+# TSQC video quality pipeline — Real-ESRGAN AI
 
-Công cụ dựng lại **24 clip ngang 16:9** từ phim gốc do người dùng cung cấp, gắn với kịch bản giới thiệu Trường Sĩ quan Chính trị (6 phút 50 giây).
+Bộ xử lý **24 video ngang 16:9** theo kịch bản giới thiệu Trường Sĩ quan Chính trị. Đã bổ sung AI super-resolution mã nguồn mở, thay thế cách làm nét bằng FFmpeg khi có GPU.
 
-## Mục đích
-Không nên tăng nét trên 24 file MP4 đã bị nén lần trước. Chương trình cắt lại **trực tiếp từ phim gốc 1920×1080**, crop vùng logo, phóng Lanczos và làm nét nhẹ (không làm bệt mặt người). Xuất H.264 CRF 17 mặc định, chỉ giữ hình để tiện ghép lời bình. Chất lượng thực tế giới hạn bởi phim nguồn và vùng hình đã phải cắt.
+## Real-ESRGAN nguồn mở
 
-## Cách chạy trên máy Windows
-1. Cài FFmpeg và thêm vào PATH.
-2. Giải nén bộ clip cũ để lấy `DANH_MUC_CLIP.csv`.
-3. Chạy:
+- [Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN) (BSD-3-Clause); dùng mô hình **realesrgan-x4plus** cho video người thật.
+- [Real-ESRGAN ncnn Vulkan](https://github.com/xinntao/Real-ESRGAN-ncnn-vulkan) (MIT); cung cấp bản portable Windows cho Intel/AMD/NVIDIA GPU có Vulkan.
+- [FFmpeg](https://ffmpeg.org/) tách khung hình, crop 16:9 và xuất video H.264 Full HD.
+- Không dùng model chuyên anime cho phim tài liệu có người thật.
+
+## Cách chạy (Windows)
+
+1. Cài Python 3 và FFmpeg, cập nhật driver đồ họa Vulkan.
+2. Tải/giải nén thư mục `tools/tsqc-video-quality` và giữ bốn file `ai_upscale.py`, `setup_windows.ps1`, `RUN_AI_WINDOWS.cmd`, `DANH_MUC_CLIP.csv` trong cùng thư mục.
+3. Kéo thả **phim gốc** `Nửa thế kỷ đào tạo cán bộ chính trị cấp phân đội tại Trường Sĩ quan Chính trị.mp4` lên `RUN_AI_WINDOWS.cmd`.
+4. Trình khởi chạy tự tải [bản Real-ESRGAN ncnn Vulkan Windows chính thức v0.2.0](https://github.com/xinntao/Real-ESRGAN-ncnn-vulkan/releases/tag/v0.2.0) và chỉ xử lý video **trên máy của bạn**, không tự tải video nguồn lên GitHub.
+5. Kết quả trong `OUTPUT_AI` theo tên phân cảnh và mốc cắt từ danh mục. Video đầu ra 1920×1080, 30fps, không có tiếng để tiện ghép lời bình.
+
+Mặc định cảnh tư liệu lịch sử 2, 3, 4 dùng phương án **không sinh chi tiết AI** để tránh thay đổi diện mạo, chữ và tư liệu thật. Các cảnh quay học viên/giảng đường/cơ sở hiện nay được tăng nét bằng AI.
+
+## Chạy thử một clip / ít VRAM
 
 ```powershell
-python tools/tsqc-video-quality/enhance.py "Nua-the-ky-goc.mp4" "DANH_MUC_CLIP.csv" "clips_nang_chat_luong"
+python ai_upscale.py "C:\video\tsqc_goc.mp4" DANH_MUC_CLIP.csv OUTPUT_AI --ncnn "C:\AI\realesrgan-ncnn-vulkan.exe" --scene 1 --limit 1
 ```
 
-Có thể thêm `--preset fast --crf 16` để tăng chất lượng (file sẽ lớn hơn). Script chỉ cần thư viện Python tiêu chuẩn.
+Nếu GPU báo hết VRAM, thêm `--tile 64`. Để tiếp tục bỏ qua tệp đã xong: `--resume`. Nếu chạy mã Python trực tiếp và **không** truyền `--no-ai-scene`, nó sẽ dùng AI với mọi cảnh kể cả hình tư liệu: cần kiểm tra từng frame trước khi công bố.
 
-## Nếu muốn khôi phục chi tiết bằng AI
+Xem kế hoạch không cần model hay GPU:
 
-Bản cắt này dùng bộ lọc nâng độ nét FFmpeg, **không phải AI super-resolution**. Real-ESRGAN là công cụ AI mã nguồn mở tại https://github.com/xinntao/Real-ESRGAN . Nếu xử lý bằng AI trên GPU, nên dựng clip **trực tiếp từ nguồn** trước rồi thử AI trên vài giây đại diện, so sánh khuôn mặt, chữ và tư liệu lịch sử. AI không thể bảo đảm khôi phục chi tiết lịch sử chính xác và có thể tạo chi tiết giả.
+```powershell
+python ai_upscale.py "C:\video\tsqc_goc.mp4" DANH_MUC_CLIP.csv OUTPUT_AI --ncnn "realesrgan-ncnn-vulkan.exe" --dry-run
+```
 
-Các GitHub Actions runner tiêu chuẩn không có GPU chuyên dụng; chạy AI upscale 24 clip HD trên CPU có thể mất rất nhiều thời gian.
+Công cụ `enhance.py` cũ vẫn có thể sử dụng để cắt lại và làm nét FFmpeg **không có AI**.
 
-## Tôn trọng quyền sử dụng
+**Giới hạn:** AI có thể tạo chi tiết không tồn tại trong khung hình gốc và gây nhấp nháy khung hình; chất lượng thực tế tùy phim gốc. GitHub Actions runner tiêu chuẩn không cung cấp GPU phù hợp để chạy khối lượng này, nên xử lý thực tế trên Windows có Vulkan GPU. Mã nguồn đã được kiểm tra cú pháp và logic xử lý trên video thử tổng hợp nhưng không phải kết quả AI thật khi chưa chạy với model/GPU.
 
-Không tải lên kho GitHub công khai tệp phim nguồn hay các clip của đơn vị báo chí khi chưa có quyền. Việc cắt bỏ logo không thay đổi quyền tác giả. Ghi nguồn và xin phép phù hợp trước khi phát hành.
+**Nguồn tư liệu và quyền tác giả:** Kho công khai chỉ chứa mã xử lý và mốc cắt; không tải video của Báo Quân đội nhân dân lên kho khi chưa được cho phép. Việc crop logo không thay đổi quyền sử dụng; giữ ghi nguồn và xin phép đơn vị sở hữu trước khi công bố.
