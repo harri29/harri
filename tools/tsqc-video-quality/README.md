@@ -14,7 +14,7 @@ Bộ xử lý **24 video ngang 16:9** theo kịch bản giới thiệu Trường
 1. Cài Python 3 và FFmpeg, cập nhật driver đồ họa Vulkan.
 2. Tải/giải nén thư mục `tools/tsqc-video-quality` và giữ bốn file `ai_upscale.py`, `setup_windows.ps1`, `RUN_AI_WINDOWS.cmd`, `DANH_MUC_CLIP.csv` trong cùng thư mục.
 3. Kéo thả **phim gốc** `Nửa thế kỷ đào tạo cán bộ chính trị cấp phân đội tại Trường Sĩ quan Chính trị.mp4` lên `RUN_AI_WINDOWS.cmd`.
-4. Trình khởi chạy tự tải [bản Real-ESRGAN ncnn Vulkan Windows chính thức v0.2.0](https://github.com/xinntao/Real-ESRGAN-ncnn-vulkan/releases/tag/v0.2.0) và chỉ xử lý video **trên máy của bạn**, không tự tải video nguồn lên GitHub.
+4. Trình khởi chạy tự tải [gói Real-ESRGAN ncnn Vulkan Windows v0.2.5.0 đầy đủ mô hình](https://github.com/xinntao/Real-ESRGAN/releases/tag/v0.2.5.0) và chỉ xử lý video **trên máy của bạn**, không tự tải video nguồn lên GitHub.
 5. Kết quả trong `OUTPUT_AI` theo tên phân cảnh và mốc cắt từ danh mục. Video đầu ra 1920×1080, 30fps, không có tiếng để tiện ghép lời bình.
 
 Mặc định cảnh tư liệu lịch sử 2, 3, 4 dùng phương án **không sinh chi tiết AI** để tránh thay đổi diện mạo, chữ và tư liệu thật. Các cảnh quay học viên/giảng đường/cơ sở hiện nay được tăng nét bằng AI.
