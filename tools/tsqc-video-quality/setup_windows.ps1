@@ -5,8 +5,8 @@ $bin = Join-Path $root 'bin'
 $exe = Get-ChildItem -Path $bin -Recurse -Filter 'realesrgan-ncnn-vulkan.exe' -File -ErrorAction SilentlyContinue | Select-Object -First 1
 if (-not $exe) {
     New-Item -ItemType Directory -Force -Path $bin | Out-Null
-    $archive = Join-Path $env:TEMP 'tsqc-realesrgan-v0.2.0-windows.zip'
-    $release = 'https://github.com/xinntao/Real-ESRGAN-ncnn-vulkan/releases/download/v0.2.0/realesrgan-ncnn-vulkan-v0.2.0-windows.zip'
+    $archive = Join-Path $env:TEMP 'tsqc-realesrgan-20220424-windows-full.zip'
+    $release = 'https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.5.0/realesrgan-ncnn-vulkan-20220424-windows.zip'
     Write-Host 'Downloading official Real-ESRGAN ncnn Vulkan Windows package...'
     Invoke-WebRequest -Uri $release -OutFile $archive -UseBasicParsing
     Expand-Archive -Path $archive -DestinationPath $bin -Force
