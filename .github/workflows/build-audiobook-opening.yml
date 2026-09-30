@@ -27,9 +27,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r skills/vietnamese-audiobook/requirements.txt
 
-      - name: Generate audiobook
+      - name: Generate audiobook fast
         run: |
-          python skills/vietnamese-audiobook/scripts/audiobook_tts.py             audiobook/harry_potter_nguoi_doc_den_muon_phan_mo_dau.txt             -o build/audio             --voice vi-VN-NamMinhNeural             --rate=-8%
+          python skills/vietnamese-audiobook/scripts/audiobook_tts_fast.py             audiobook/harry_potter_nguoi_doc_den_muon_phan_mo_dau.txt             -o build/audio             --voice vi-VN-NamMinhNeural             --rate=-8%             --max-chars 1100             --concurrency 4
 
       - name: Normalize audiobook
         run: |
