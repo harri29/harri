@@ -89,7 +89,6 @@ jobs:
           name: harry-potter-nguoi-doc-den-muon-video
           path: outputs/video/Harry_Potter_Nguoi_Doc_Den_Muon_Phan_Mo_Dau_YouTube_720p.mp4
           compression-level: 0
-          compression-level: 0
 
 
       - name: Commit compact final video
