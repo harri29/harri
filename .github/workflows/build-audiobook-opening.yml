@@ -8,6 +8,10 @@ on:
       - ".github/workflows/build-audiobook-opening.yml"
   workflow_dispatch:
 
+concurrency:
+  group: build-audiobook-opening
+  cancel-in-progress: true
+
 jobs:
   audiobook:
     runs-on: ubuntu-latest
@@ -15,6 +19,8 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -27,7 +33,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r skills/vietnamese-audiobook/requirements.txt
 
-      - name: Generate audiobook fast
+      - name: Generate audiobook
         run: |
           python skills/vietnamese-audiobook/scripts/audiobook_tts_fast.py             audiobook/harry_potter_nguoi_doc_den_muon_phan_mo_dau.txt             -o build/audio             --voice vi-VN-NamMinhNeural             --rate=-8%             --max-chars 1100             --concurrency 4
 
@@ -36,16 +42,19 @@ jobs:
           mkdir -p outputs/audiobook
           ffmpeg -y -i build/audio/audiobook.mp3             -af "loudnorm=I=-16:TP=-1.5:LRA=11"             -c:a libmp3lame -b:a 128k             outputs/audiobook/harry_potter_nguoi_doc_den_muon_phan_mo_dau.mp3
 
-      - name: Commit final MP3
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add outputs/audiobook/harry_potter_nguoi_doc_den_muon_phan_mo_dau.mp3
-          git diff --cached --quiet || git commit -m "Build audiobook opening MP3"
-          git push
-
       - name: Upload audiobook artifact
         uses: actions/upload-artifact@v4
         with:
           name: audiobook-opening
           path: outputs/audiobook/harry_potter_nguoi_doc_den_muon_phan_mo_dau.mp3
+          compression-level: 0
+
+      - name: Commit final MP3
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add outputs/audiobook/harry_potter_nguoi_doc_den_muon_phan_mo_dau.mp3
+          git diff --cached --quiet && exit 0
+          git commit -m "Build audiobook opening MP3"
+          git pull --rebase origin main
+          git push origin HEAD:main
