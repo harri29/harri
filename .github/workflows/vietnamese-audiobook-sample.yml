@@ -1,0 +1,37 @@
+name: Vietnamese Audiobook Sample
+
+on:
+  push:
+    paths:
+      - "samples/tts/**"
+      - "skills/vietnamese-audiobook/**"
+  workflow_dispatch:
+
+jobs:
+  tts:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          python -m pip install --upgrade pip
+          pip install -r skills/vietnamese-audiobook/requirements.txt
+
+      - name: Generate Vietnamese audiobook sample
+        run: |
+          python skills/vietnamese-audiobook/scripts/audiobook_tts.py             samples/tts/sample.txt             -o build/audio             --voice vi-VN-NamMinhNeural             --rate=-8%
+
+      - name: Upload sample audio
+        uses: actions/upload-artifact@v4
+        with:
+          name: vietnamese-audiobook-sample
+          path: build/audio/audiobook.mp3
