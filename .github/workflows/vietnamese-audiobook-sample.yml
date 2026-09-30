@@ -3,7 +3,7 @@ name: Vietnamese Audiobook Sample
 on:
   push:
     paths:
-      - "samples/tts/**"
+      - "samples/tts/sample.txt"
       - "skills/vietnamese-audiobook/**"
   workflow_dispatch:
 
@@ -11,7 +11,7 @@ jobs:
   tts:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -29,6 +29,18 @@ jobs:
       - name: Generate Vietnamese audiobook sample
         run: |
           python skills/vietnamese-audiobook/scripts/audiobook_tts.py             samples/tts/sample.txt             -o build/audio             --voice vi-VN-NamMinhNeural             --rate=-8%
+
+      - name: Copy MP3 into repository
+        run: |
+          cp build/audio/audiobook.mp3 samples/tts/sample_namminh.mp3
+
+      - name: Commit generated MP3
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add samples/tts/sample_namminh.mp3
+          git diff --cached --quiet || git commit -m "Generate Vietnamese TTS sample"
+          git push
 
       - name: Upload sample audio
         uses: actions/upload-artifact@v4
