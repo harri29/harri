@@ -1,0 +1,85 @@
+name: Build Audiobook Video
+
+on:
+  push:
+    paths:
+      - "outputs/audiobook/harry_potter_nguoi_doc_den_muon_phan_mo_dau.mp3"
+      - ".github/workflows/build-audiobook-video.yml"
+  workflow_dispatch:
+
+jobs:
+  video:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install FFmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Download AI illustrations
+        run: |
+          mkdir -p build/images
+          curl -L --fail --retry 3 "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:2abf95e1-0b65-483b-9b16-6356da1d3b18" -o "build/images/01.png"
+          curl -L --fail --retry 3 "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:7fd89de2-037d-49ce-87ec-fc4fa1dafbdd" -o "build/images/02.png"
+          curl -L --fail --retry 3 "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:aa782b78-d525-492a-b47d-e4ef2eb9c4fd" -o "build/images/03.png"
+          curl -L --fail --retry 3 "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:7b5f62ef-a09c-47ba-bb9b-469f94846989" -o "build/images/04.png"
+          curl -L --fail --retry 3 "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:6736a498-aab6-4c04-96f3-e2f6fe903e4f" -o "build/images/05.png"
+          curl -L --fail --retry 3 "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:2635cc4c-b421-4804-943f-c12998b0acf0" -o "build/images/06.png"
+          curl -L --fail --retry 3 "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:d40990ed-305b-47b5-9e77-f2fa7f7a6e2b" -o "build/images/07.png"
+          curl -L --fail --retry 3 "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:058933cc-62cb-4421-8b7f-a8359b1e2bc4" -o "build/images/08.png"
+          curl -L --fail --retry 3 "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:c89b1343-0529-4e45-a7f9-fa9a09896d4b" -o "build/images/09.png"
+          curl -L --fail --retry 3 "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:87febaf5-c1a0-4171-8432-aea708c66aae" -o "build/images/10.png"
+          curl -L --fail --retry 3 "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:e839fd01-d61d-402c-b4c4-d2db13e203e1" -o "build/images/11.png"
+          curl -L --fail --retry 3 "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:f14e0cbd-5b8f-47e9-8c5a-9fc274ff3c4c" -o "build/images/12.png"
+          curl -L --fail --retry 3 "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:f833851e-6b8e-4afa-8993-29f8c09d5bab" -o "build/images/13.png"
+          curl -L --fail --retry 3 "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:6d9a5c14-a4da-489a-8496-c6f0d42bb2c5" -o "build/images/14.png"
+          curl -L --fail --retry 3 "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:fb93fd86-1ca3-4bc3-b2f9-1e3cbc1c1841" -o "build/images/15.png"
+          curl -L --fail --retry 3 "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:e02de06a-360d-4ed1-b48c-5efabfc945ab" -o "build/images/16.png"
+          curl -L --fail --retry 3 "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:d24f3af5-373b-472b-a1a0-46e57956c02d" -o "build/images/17.png"
+          curl -L --fail --retry 3 "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:f60d1bbb-cd91-4c60-8068-cc409a6e34a0" -o "build/images/18.png"
+          curl -L --fail --retry 3 "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:8cbbd6d4-6fb0-4eee-bc58-509645d70ed5" -o "build/images/19.png"
+          curl -L --fail --retry 3 "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:777090c7-19c5-4362-8504-99a03a8a9d35" -o "build/images/20.png"
+
+      - name: Create image timeline
+        run: |
+          python - <<'PY'
+          import json, subprocess
+          from pathlib import Path
+
+          audio = Path("outputs/audiobook/harry_potter_nguoi_doc_den_muon_phan_mo_dau.mp3")
+          images = sorted(Path("build/images").glob("*.png"))
+          info = subprocess.check_output([
+              "ffprobe","-v","error","-show_entries","format=duration","-of","json",str(audio)
+          ], text=True)
+          duration = float(json.loads(info)["format"]["duration"])
+          scene = 35.0
+          lines = []
+          t = 0.0
+          i = 0
+          while t < duration + scene:
+              p = images[i % len(images)].resolve()
+              lines.append(f"file '{p}'")
+              lines.append(f"duration {scene:.3f}")
+              t += scene
+              i += 1
+          p = images[(i-1) % len(images)].resolve()
+          lines.append(f"file '{p}'")
+          Path("build/images.txt").write_text("\n".join(lines), encoding="utf-8")
+          print(f"Audio: {duration/60:.1f} min; scenes: {i}; unique images: {len(images)}")
+          PY
+
+      - name: Render 720p YouTube audiobook
+        run: |
+          mkdir -p build/output
+          ffmpeg -y             -f concat -safe 0 -i build/images.txt             -i outputs/audiobook/harry_potter_nguoi_doc_den_muon_phan_mo_dau.mp3             -vf "scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720,format=yuv420p"             -r 30 -c:v libx264 -preset veryfast -crf 26             -c:a aac -b:a 128k -ar 44100             -shortest -movflags +faststart             build/output/Harry_Potter_Nguoi_Doc_Den_Muon_Phan_Mo_Dau_YouTube_720p.mp4
+
+      - name: Upload final video
+        uses: actions/upload-artifact@v4
+        with:
+          name: harry-potter-nguoi-doc-den-muon-video
+          path: build/output/Harry_Potter_Nguoi_Doc_Den_Muon_Phan_Mo_Dau_YouTube_720p.mp4
+          compression-level: 0
