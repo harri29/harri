@@ -1,0 +1,29 @@
+{
+  "meta": {"format_version":"5.0","model_format":"free","box_uv":true},
+  "name":"Kamen Rider Craft - Decade Suit",
+  "model_identifier":"kamenrider:decade_suit",
+  "visible_box":[2,3,0],
+  "resolution":{"width":64,"height":64},
+  "elements":[
+    {"name":"helmet_shell","box_uv":true,"from":[-4.3,24.0,-4.3],"to":[4.3,32.55,4.3],"origin":[0,28,0],"uv_offset":[0,0],"color":0,"type":"cube","uuid":"30000000-0000-4000-8000-000000000001","faces":{"north":{"uv":[0,0,9,9],"texture":null},"east":{"uv":[0,0,9,9],"texture":null},"south":{"uv":[0,0,9,9],"texture":null},"west":{"uv":[0,0,9,9],"texture":null},"up":{"uv":[0,0,9,9],"texture":null},"down":{"uv":[0,0,9,9],"texture":null}}},
+    {"name":"eye_bar","box_uv":true,"from":[-3.5,27.1,-4.72],"to":[3.5,29.15,-4.14],"origin":[0,28,0],"uv_offset":[0,18],"color":4,"type":"cube","uuid":"30000000-0000-4000-8000-000000000002","faces":{"north":{"uv":[0,18,7,20],"texture":null},"east":{"uv":[0,18,1,20],"texture":null},"south":{"uv":[0,18,7,20],"texture":null},"west":{"uv":[0,18,1,20],"texture":null},"up":{"uv":[0,18,7,19],"texture":null},"down":{"uv":[0,18,7,19],"texture":null}}},
+    {"name":"face_rail_left","box_uv":true,"from":[-2.67,23.65,-4.87],"to":[-1.83,30.75,-3.97],"origin":[-2.25,27.45,-4.42],"rotation":[0,0,-6],"uv_offset":[0,22],"color":2,"type":"cube","uuid":"30000000-0000-4000-8000-000000000003","faces":{"north":{"uv":[0,22,1,29],"texture":null},"east":{"uv":[0,22,1,29],"texture":null},"south":{"uv":[0,22,1,29],"texture":null},"west":{"uv":[0,22,1,29],"texture":null},"up":{"uv":[0,22,1,23],"texture":null},"down":{"uv":[0,22,1,23],"texture":null}}},
+    {"name":"face_rail_right","box_uv":true,"from":[1.83,23.65,-4.87],"to":[2.67,30.75,-3.97],"origin":[2.25,27.45,-4.42],"rotation":[0,0,6],"uv_offset":[4,22],"color":2,"type":"cube","uuid":"30000000-0000-4000-8000-000000000004","faces":{"north":{"uv":[4,22,5,29],"texture":null},"east":{"uv":[4,22,5,29],"texture":null},"south":{"uv":[4,22,5,29],"texture":null},"west":{"uv":[4,22,5,29],"texture":null},"up":{"uv":[4,22,5,23],"texture":null},"down":{"uv":[4,22,5,23],"texture":null}}},
+    {"name":"chest_armor","box_uv":true,"from":[-4.45,17.5,-2.35],"to":[4.45,24.3,2.35],"origin":[0,21,0],"uv_offset":[20,0],"color":0,"type":"cube","uuid":"30000000-0000-4000-8000-000000000005","faces":{"north":{"uv":[20,0,29,7],"texture":null},"east":{"uv":[20,0,25,7],"texture":null},"south":{"uv":[20,0,29,7],"texture":null},"west":{"uv":[20,0,25,7],"texture":null},"up":{"uv":[20,0,29,5],"texture":null},"down":{"uv":[20,0,29,5],"texture":null}}},
+    {"name":"chest_stripe","box_uv":true,"from":[-1.0,18.0,-2.8],"to":[1.0,24.2,-2.25],"origin":[0,21,0],"rotation":[0,0,-24],"uv_offset":[20,14],"color":1,"type":"cube","uuid":"30000000-0000-4000-8000-000000000006","faces":{"north":{"uv":[20,14,22,20],"texture":null},"east":{"uv":[20,14,21,20],"texture":null},"south":{"uv":[20,14,22,20],"texture":null},"west":{"uv":[20,14,21,20],"texture":null},"up":{"uv":[20,14,22,15],"texture":null},"down":{"uv":[20,14,22,15],"texture":null}}},
+    {"name":"decadriver","box_uv":true,"from":[-4.65,11.0,-2.45],"to":[4.65,13.2,2.45],"origin":[0,12,0],"uv_offset":[20,22],"color":2,"type":"cube","uuid":"30000000-0000-4000-8000-000000000007","faces":{"north":{"uv":[20,22,29,24],"texture":null},"east":{"uv":[20,22,25,24],"texture":null},"south":{"uv":[20,22,29,24],"texture":null},"west":{"uv":[20,22,25,24],"texture":null},"up":{"uv":[20,22,29,27],"texture":null},"down":{"uv":[20,22,29,27],"texture":null}}},
+    {"name":"shoulder_left","box_uv":true,"from":[4.1,20.1,-2.6],"to":[8.9,23.1,2.6],"origin":[6,22,0],"uv_offset":[40,16],"color":1,"type":"cube","uuid":"30000000-0000-4000-8000-000000000008","faces":{"north":{"uv":[40,16,45,19],"texture":null},"east":{"uv":[40,16,45,19],"texture":null},"south":{"uv":[40,16,45,19],"texture":null},"west":{"uv":[40,16,45,19],"texture":null},"up":{"uv":[40,16,45,21],"texture":null},"down":{"uv":[40,16,45,21],"texture":null}}},
+    {"name":"shoulder_right","box_uv":true,"from":[-8.9,20.1,-2.6],"to":[-4.1,23.1,2.6],"origin":[-6,22,0],"uv_offset":[40,16],"color":1,"type":"cube","uuid":"30000000-0000-4000-8000-000000000009","faces":{"north":{"uv":[40,16,45,19],"texture":null},"east":{"uv":[40,16,45,19],"texture":null},"south":{"uv":[40,16,45,19],"texture":null},"west":{"uv":[40,16,45,19],"texture":null},"up":{"uv":[40,16,45,21],"texture":null},"down":{"uv":[40,16,45,21],"texture":null}}}
+  ],
+  "groups":[
+    {"name":"Helmet","uuid":"40000000-0000-4000-8000-000000000001","origin":[0,28,0],"rotation":[0,0,0],"color":0,"children":[],"visibility":true,"export":true},
+    {"name":"Torso","uuid":"40000000-0000-4000-8000-000000000002","origin":[0,18,0],"rotation":[0,0,0],"color":1,"children":[],"visibility":true,"export":true},
+    {"name":"Shoulders","uuid":"40000000-0000-4000-8000-000000000003","origin":[0,22,0],"rotation":[0,0,0],"color":2,"children":[],"visibility":true,"export":true}
+  ],
+  "outliner":[
+    {"uuid":"40000000-0000-4000-8000-000000000001","isOpen":true,"children":["30000000-0000-4000-8000-000000000001","30000000-0000-4000-8000-000000000002","30000000-0000-4000-8000-000000000003","30000000-0000-4000-8000-000000000004"]},
+    {"uuid":"40000000-0000-4000-8000-000000000002","isOpen":true,"children":["30000000-0000-4000-8000-000000000005","30000000-0000-4000-8000-000000000006","30000000-0000-4000-8000-000000000007"]},
+    {"uuid":"40000000-0000-4000-8000-000000000003","isOpen":true,"children":["30000000-0000-4000-8000-000000000008","30000000-0000-4000-8000-000000000009"]}
+  ],
+  "textures":[]
+}

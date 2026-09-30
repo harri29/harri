@@ -1,0 +1,27 @@
+modLoader="javafml"
+loaderVersion="[1,)"
+license="MIT"
+
+[[mods]]
+modId="kamenrider"
+version="0.1.0"
+displayName="Kamen Rider Craft"
+authors="harri29"
+description='''
+Fan-made Kamen Rider gameplay mod for Minecraft. Includes transformation drivers, Rider powers and finishers.
+No copyrighted Toei audio, textures or models are bundled.
+'''
+
+[[dependencies.kamenrider]]
+modId="neoforge"
+type="required"
+versionRange="[21.1,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.kamenrider]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="BOTH"

@@ -1,0 +1,8 @@
+{
+  "parent": "kamenrider:item/gaia_memory_base",
+  "textures": {
+    "body": "minecraft:block/light_gray_concrete",
+    "cap": "minecraft:block/black_concrete",
+    "screen": "minecraft:block/iron_block"
+  }
+}

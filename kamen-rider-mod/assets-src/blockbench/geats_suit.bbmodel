@@ -1,0 +1,27 @@
+{
+  "meta":{"format_version":"5.0","model_format":"free","box_uv":true},
+  "name":"Kamen Rider Craft - Geats Suit",
+  "model_identifier":"kamenrider:geats_suit",
+  "visible_box":[2,3,0],
+  "resolution":{"width":64,"height":64},
+  "elements":[
+    {"name":"helmet","box_uv":true,"from":[-4.35,24.0,-4.35],"to":[4.35,32.6,4.35],"origin":[0,28,0],"uv_offset":[0,0],"type":"cube","uuid":"30000000-0000-4000-8000-000000000001"},
+    {"name":"ear_left","box_uv":true,"from":[-2.9,31.0,-1.2],"to":[-1.6,36.2,0.1],"origin":[-2.25,31.5,-0.6],"rotation":[-6,0,-17],"uv_offset":[0,22],"type":"cube","uuid":"30000000-0000-4000-8000-000000000002"},
+    {"name":"ear_right","box_uv":true,"from":[1.6,31.0,-1.2],"to":[2.9,36.2,0.1],"origin":[2.25,31.5,-0.6],"rotation":[-6,0,17],"uv_offset":[6,22],"type":"cube","uuid":"30000000-0000-4000-8000-000000000003"},
+    {"name":"upper_chest","box_uv":true,"from":[-4.65,20.0,-2.78],"to":[4.65,23.85,-2.08],"origin":[0,22,0],"uv_offset":[20,15],"type":"cube","uuid":"30000000-0000-4000-8000-000000000004"},
+    {"name":"belt","box_uv":true,"from":[-4.65,11.0,-2.45],"to":[4.65,13.2,2.45],"origin":[0,12,0],"uv_offset":[20,22],"type":"cube","uuid":"30000000-0000-4000-8000-000000000005"},
+    {"name":"lower_left","box_uv":true,"from":[-2.3,6.0,-2.36],"to":[2.3,11.6,2.36],"origin":[0,9,0],"uv_offset":[0,30],"type":"cube","uuid":"30000000-0000-4000-8000-000000000006"},
+    {"name":"lower_right","box_uv":true,"from":[-2.3,6.0,-2.36],"to":[2.3,11.6,2.36],"origin":[0,9,0],"uv_offset":[0,30],"type":"cube","uuid":"30000000-0000-4000-8000-000000000007"}
+  ],
+  "groups":[
+    {"name":"Helmet","uuid":"31000000-0000-4000-8000-000000000001","origin":[0,28,0],"children":[],"visibility":true,"export":true},
+    {"name":"UpperModule","uuid":"31000000-0000-4000-8000-000000000002","origin":[0,22,0],"children":[],"visibility":true,"export":true},
+    {"name":"LowerModule","uuid":"31000000-0000-4000-8000-000000000003","origin":[0,9,0],"children":[],"visibility":true,"export":true}
+  ],
+  "outliner":[
+    {"uuid":"31000000-0000-4000-8000-000000000001","children":["30000000-0000-4000-8000-000000000001","30000000-0000-4000-8000-000000000002","30000000-0000-4000-8000-000000000003"]},
+    {"uuid":"31000000-0000-4000-8000-000000000002","children":["30000000-0000-4000-8000-000000000004","30000000-0000-4000-8000-000000000005"]},
+    {"uuid":"31000000-0000-4000-8000-000000000003","children":["30000000-0000-4000-8000-000000000006","30000000-0000-4000-8000-000000000007"]}
+  ],
+  "textures":[]
+}
