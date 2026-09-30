@@ -7,6 +7,10 @@ on:
       - ".github/workflows/build-audiobook-video.yml"
   workflow_dispatch:
 
+concurrency:
+  group: build-audiobook-video
+  cancel-in-progress: true
+
 jobs:
   video:
     runs-on: ubuntu-latest
