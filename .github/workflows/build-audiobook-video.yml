@@ -15,9 +15,11 @@ jobs:
   video:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Install FFmpeg
         run: |
@@ -78,12 +80,24 @@ jobs:
 
       - name: Render 720p YouTube audiobook
         run: |
-          mkdir -p build/output
-          ffmpeg -y             -f concat -safe 0 -i build/images.txt             -i outputs/audiobook/harry_potter_nguoi_doc_den_muon_phan_mo_dau.mp3             -vf "scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720,format=yuv420p"             -r 5 -c:v libx264 -preset ultrafast -crf 28             -c:a aac -b:a 128k -ar 44100             -shortest -movflags +faststart             build/output/Harry_Potter_Nguoi_Doc_Den_Muon_Phan_Mo_Dau_YouTube_720p.mp4
+          mkdir -p outputs/video
+          ffmpeg -y             -f concat -safe 0 -i build/images.txt             -i outputs/audiobook/harry_potter_nguoi_doc_den_muon_phan_mo_dau.mp3             -vf "scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720,format=yuv420p"             -r 2 -c:v libx264 -preset ultrafast -crf 32             -c:a aac -b:a 96k -ar 44100             -shortest -movflags +faststart             outputs/video/Harry_Potter_Nguoi_Doc_Den_Muon_Phan_Mo_Dau_YouTube_720p.mp4
 
       - name: Upload final video
         uses: actions/upload-artifact@v4
         with:
           name: harry-potter-nguoi-doc-den-muon-video
-          path: build/output/Harry_Potter_Nguoi_Doc_Den_Muon_Phan_Mo_Dau_YouTube_720p.mp4
+          path: outputs/video/Harry_Potter_Nguoi_Doc_Den_Muon_Phan_Mo_Dau_YouTube_720p.mp4
           compression-level: 0
+          compression-level: 0
+
+
+      - name: Commit compact final video
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add outputs/video/Harry_Potter_Nguoi_Doc_Den_Muon_Phan_Mo_Dau_YouTube_720p.mp4
+          git diff --cached --quiet && exit 0
+          git commit -m "Build final audiobook video"
+          git pull --rebase origin main
+          git push origin HEAD:main
