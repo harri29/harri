@@ -79,7 +79,7 @@ jobs:
       - name: Render 720p YouTube audiobook
         run: |
           mkdir -p build/output
-          ffmpeg -y             -f concat -safe 0 -i build/images.txt             -i outputs/audiobook/harry_potter_nguoi_doc_den_muon_phan_mo_dau.mp3             -vf "scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720,format=yuv420p"             -r 30 -c:v libx264 -preset veryfast -crf 26             -c:a aac -b:a 128k -ar 44100             -shortest -movflags +faststart             build/output/Harry_Potter_Nguoi_Doc_Den_Muon_Phan_Mo_Dau_YouTube_720p.mp4
+          ffmpeg -y             -f concat -safe 0 -i build/images.txt             -i outputs/audiobook/harry_potter_nguoi_doc_den_muon_phan_mo_dau.mp3             -vf "scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720,format=yuv420p"             -r 5 -c:v libx264 -preset ultrafast -crf 28             -c:a aac -b:a 128k -ar 44100             -shortest -movflags +faststart             build/output/Harry_Potter_Nguoi_Doc_Den_Muon_Phan_Mo_Dau_YouTube_720p.mp4
 
       - name: Upload final video
         uses: actions/upload-artifact@v4
